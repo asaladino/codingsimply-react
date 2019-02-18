@@ -1,0 +1,59 @@
+.post-entry {
+  margin-top: 1rem;
+  padding: 2rem 0;
+  margin-bottom: 1rem;
+}
+
+.post-date {
+  font-size: .75rem;
+  display: block;
+  padding: 1rem 0;
+}
+
+.current-menu-item {
+  text-decoration: underline;
+}
+
+.widget_categories {
+  @extend .large-8
+}
+
+.site-main {
+  padding: 2rem 0 0 0;
+}
+
+.menu-item-description {
+  display: none;
+}
+
+.project-icon {
+  border: 0.6vw solid get-color('primary');
+  width: 100%;
+  height: 50px;
+  margin-bottom: 5px;
+  color: $black;
+  text-align: center;
+}
+
+.callout.no-border {
+  border: none;
+}
+
+.shadow {
+  box-shadow: 0 0 0.25rem 0 $dark-gray;
+}
+
+.project-slide-show {
+  padding: 0;
+  background: $light-gray;
+  box-shadow: inset 0 0 0.25rem 0 $dark-gray;
+
+  .orbit-slide .orbit-slide-content {
+    margin: 2rem 0;
+    padding-bottom: 1rem;
+
+    h3 {
+      margin-top: 2rem;
+    }
+  }
+}
