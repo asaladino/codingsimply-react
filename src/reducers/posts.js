@@ -4,8 +4,12 @@ const defaultState = {
     posts: [],
     post: null,
     didLoad: false,
+    didPostLoad: false,
     hasLoaded: function () {
         return this.didLoad;
+    },
+    hasPostLoaded: function() {
+        return this.didPostLoad;
     },
     getId: function (post) {
         const {id} = post;
@@ -22,7 +26,17 @@ const defaultState = {
         const {rendered} = post.title;
         return rendered;
     },
+    hasDate: function(post) {
+        return this.getDate(post) !== null;
+    },
     getDate: function (post) {
+        if (post == null && this.post == null) {
+            return null;
+        }
+        if (post == null) {
+            const {date} = this.post;
+            return date;
+        }
         const {date} = post;
         return date;
     },
@@ -58,7 +72,15 @@ const posts = (state = defaultState, action) => {
     if (action.type === actions.GOT_POST) {
         return {
             ...state,
+            didPostLoad: true,
             post: action.data
+        }
+    }
+    if (action.type === actions.GET_POST) {
+        return {
+            ...state,
+            didPostLoad: false,
+            post: null
         }
     }
 

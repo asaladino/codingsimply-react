@@ -22,6 +22,4 @@ const site = (state = defaultState, action) => {
     return state;
 };
 
-
-
 export default site;

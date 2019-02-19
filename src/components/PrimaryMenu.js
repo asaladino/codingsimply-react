@@ -1,3 +1,4 @@
+// @flow
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 
@@ -17,7 +18,11 @@ class PrimaryMenu extends Component {
                             </li>
                         );
                     })}
-                    <li><button data-open="search-modal"><i className="fa fa-search">{''}</i></button></li>
+                    <li>
+                        <button data-open="search-modal">
+                            <i className="fa fa-search">{''}</i>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         );

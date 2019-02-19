@@ -17,13 +17,13 @@ const pages = {
                 data: null
             }));
     },
-    getPage(dispatch, id) {
+    getPage(dispatch, slug) {
         dispatch({type: actions.GET_PAGE});
-        axios.get(`${main.baseUrl}/wp-json/wp/v2/pages/${id}`)
+        axios.get(`${main.baseUrl}/wp-json/wp/v2/pages/?slug=${slug}`)
             .then((response) => dispatch({
                 type: actions.GOT_PAGE,
                 success: true,
-                data: response.data
+                data: response.data[0]
             }))
             .catch((error) => dispatch({
                 type: actions.GOT_PAGE,

@@ -8,6 +8,13 @@ const defaultState = {
         return this.didLoad;
     },
     getTitle: function (page) {
+        if(page == null && this.page == null) {
+            return '';
+        }
+        if (page == null) {
+            const {rendered} = this.page.title;
+            return rendered;
+        }
         const {rendered} = page.title;
         return rendered;
     },
