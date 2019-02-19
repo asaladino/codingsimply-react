@@ -1,36 +1,41 @@
-import {posts as postsAction} from "../actions/posts";
-import React, {Component} from "react";
+import {Component} from "react";
 import {connect} from "react-redux";
-import PrimaryMenu from "../components/PrimaryMenu";
-import {site as siteAction} from "../actions/site";
-import {menus as menuAction} from "../actions/menu";
+import {site as siteAction} from '../actions/site';
+import {posts as postsAction} from '../actions/posts';
+import {menus as menuAction} from '../actions/menu';
+import React from "react";
+import PostsList from "../components/PostsList";
+import DefaultLayout from "../components/DefaultLayout";
 
-
-class Posts extends Component {
-
+class Home extends Component {
     componentDidMount() {
-        const {site, menus, dispatch, match} = this.props;
+        const {site, menus, posts, dispatch} = this.props;
         if (!site.hasLoaded()) {
             siteAction.get(dispatch);
+        }
+        if (!posts.hasLoaded()) {
+            postsAction.getPosts(dispatch);
         }
         if (!menus.hasLoaded()) {
             menuAction.getMenu(dispatch, 'primary');
         }
-        if(match.params.slug) {
-            postsAction.getPost(dispatch, match.params.slug);
-        }
-    };
+    }
 
     render() {
         const {site, menus, posts} = this.props;
         return (
-            <div className="App">
-                <header className="header">
-                    <h1>{site.name}</h1>
-                    <PrimaryMenu menus={menus}/>
-                </header>
-                    <div dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
-            </div>
+            <DefaultLayout site={site} menus={menus}>
+                <div className="row">
+                    <div className="large-8 large-push-2 columns">
+                        <div id="primary" className="content-area">
+                            <main id="main" className="site-main">
+                                <h2>Blog</h2>
+                                <PostsList posts={posts}/>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+            </DefaultLayout>
         );
     }
 }
@@ -41,4 +46,4 @@ export default connect(state => {
         menus: state.menus,
         posts: state.posts
     };
-})(Posts);
+})(Home);
