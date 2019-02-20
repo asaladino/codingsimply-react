@@ -10,7 +10,6 @@ import Pages from "./containers/Pages";
 
 class App extends Component {
     render() {
-        console.log(`${routes.HOME}/*`);
         return (
             <BrowserRouter>
                 <React.Fragment>
