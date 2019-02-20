@@ -3,6 +3,7 @@ import {pages as actions} from "../constants/actions";
 const defaultState = {
     pages: [],
     page: null,
+    featuredMedia: null,
     didLoad: false,
     hasLoaded: function () {
         return this.didLoad;
@@ -28,6 +29,16 @@ const defaultState = {
         }
         const {rendered} = page.content;
         return rendered;
+    },
+    getFeaturedMediaLarge: function() {
+        if(this.featuredMedia !== null) {
+            return this.featuredMedia.media_details.sizes.large.source_url;
+        }
+    },
+    getFeaturedMediaAlt: function() {
+        if(this.featuredMedia !== null) {
+            return this.featuredMedia.alt_text;
+        }
     }
 };
 
@@ -43,6 +54,18 @@ const pages = (state = defaultState, action) => {
         return {
             ...state,
             page: action.data
+        }
+    }
+    if (action.type === actions.GET_FEATURED_MEDIA) {
+        return {
+            ...state,
+            featuredMedia: null
+        }
+    }
+    if (action.type === actions.GOT_FEATURED_MEDIA) {
+        return {
+            ...state,
+            featuredMedia: action.data
         }
     }
 

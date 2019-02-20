@@ -12,7 +12,9 @@ const pages = {
     GET_PAGES: 'GET_PAGES',
     GOT_PAGES: 'GOT_PAGES',
     GET_PAGE: 'GET_PAGE',
-    GOT_PAGE: 'GOT_PAGE'
+    GOT_PAGE: 'GOT_PAGE',
+    GET_FEATURED_MEDIA: 'GET_FEATURED_MEDIA',
+    GOT_FEATURED_MEDIA: 'GOT_FEATURED_MEDIA'
 };
 
 const posts = {

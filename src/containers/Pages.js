@@ -4,7 +4,6 @@ import DefaultLayout from "../components/DefaultLayout";
 import {site as siteAction} from "../actions/site";
 import {menus as menuAction} from "../actions/menu";
 import {pages as pagesAction} from "../actions/pages";
-import moment from "./Post";
 
 class Pages extends Component {
     componentDidMount() {
@@ -14,7 +13,6 @@ class Pages extends Component {
         }
         if (!pages.hasLoaded()) {
             const {slug} = match.params;
-            console.log(slug);
             pagesAction.getPage(dispatch, slug);
         }
         if (!menus.hasLoaded()) {
@@ -32,6 +30,7 @@ class Pages extends Component {
                             <main id="main" className="site-main">
                                 <h2>{pages.getTitle()}</h2>
                                 <hr/>
+                                <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
                                 <div dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
                             </main>
                         </div>
