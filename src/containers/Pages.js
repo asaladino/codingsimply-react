@@ -13,7 +13,7 @@ class Pages extends Component {
         }
         if (!pages.hasLoaded()) {
             const {slug} = match.params;
-            pagesAction.getPage(dispatch, slug);
+            pagesAction.getPage(dispatch, `page-${slug}`);
         }
         if (!menus.hasLoaded()) {
             menuAction.getMenu(dispatch, 'primary');
@@ -26,14 +26,12 @@ class Pages extends Component {
             <DefaultLayout site={site} menus={menus}>
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
-                        <div id="primary" className="content-area">
-                            <main id="main" className="site-main">
-                                <h2>{pages.getTitle()}</h2>
-                                <hr/>
-                                <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
-                                <div dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
-                            </main>
-                        </div>
+                        <main className="site-main">
+                            <h2>{pages.getTitle()}</h2>
+                            <hr/>
+                            <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
+                            <div dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
+                        </main>
                     </div>
                 </div>
             </DefaultLayout>

@@ -17,13 +17,14 @@ const projects = {
                 data: null
             }));
     },
-    getProject(dispatch, id) {
+    getProject(dispatch, slug) {
         dispatch({type: actions.GET_PROJECT});
-        axios.get(`${main.baseUrl}/wp-json/wp/v2/projects/${id}`)
+        dispatch({type: actions.GOT_PROJECT, data: null});
+        axios.get(`${main.baseUrl}/wp-json/wp/v2/projects/?slug=${slug}`)
             .then((response) => dispatch({
                 type: actions.GOT_PROJECT,
                 success: true,
-                data: response.data
+                data: response.data[0]
             }))
             .catch((error) => dispatch({
                 type: actions.GOT_PROJECT,

@@ -1,20 +1,20 @@
 import {Component} from "react";
 import {connect} from "react-redux";
 import {site as siteAction} from '../actions/site';
-import {posts as postsAction} from '../actions/posts';
+import {projects as projectsAction} from '../actions/projects';
 import {menus as menuAction} from '../actions/menu';
 import React from "react";
-import PostsList from "../components/PostsList";
 import DefaultLayout from "../components/DefaultLayout";
+import ProjectItem from "../components/ProjectItem";
 
-class Posts extends Component {
+class Projects extends Component {
     componentDidMount() {
-        const {site, menus, posts, dispatch} = this.props;
+        const {site, menus, projects, dispatch} = this.props;
         if (!site.hasLoaded()) {
             siteAction.get(dispatch);
         }
-        if (!posts.hasLoaded()) {
-            postsAction.getPosts(dispatch);
+        if (!projects.hasLoaded()) {
+            projectsAction.getProjects(dispatch);
         }
         if (!menus.hasLoaded()) {
             menuAction.getMenu(dispatch, 'primary');
@@ -22,14 +22,18 @@ class Posts extends Component {
     }
 
     render() {
-        const {site, menus, posts} = this.props;
+        const {site, menus, projects} = this.props;
         return (
             <DefaultLayout site={site} menus={menus}>
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
                         <main className="site-main">
-                            <h2>Blog</h2>
-                            <PostsList posts={posts}/>
+                            <h2>Portfolio</h2>
+                            <div className="row">
+                                {projects.projects.map(p => {
+                                    return <ProjectItem key={p.id} projects={projects} project={p} />;
+                                })}
+                            </div>
                         </main>
                     </div>
                 </div>
@@ -42,6 +46,6 @@ export default connect(state => {
     return {
         site: state.site,
         menus: state.menus,
-        posts: state.posts
+        projects: state.projects
     };
-})(Posts);
+})(Projects);

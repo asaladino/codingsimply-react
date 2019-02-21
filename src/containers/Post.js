@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 import {site as siteAction} from "../actions/site";
 import {menus as menuAction} from "../actions/menu";
 import DefaultLayout from "../components/DefaultLayout";
-import moment from "moment";
 import postscribe from "postscribe";
+import DateTime from "../components/DateTime";
 
 class Post extends Component {
 
@@ -45,18 +45,12 @@ class Post extends Component {
             <DefaultLayout site={site} menus={menus}>
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
-                        <div id="primary" className="content-area">
-                            <main id="main" className="site-main">
-                                <h2>{posts.getTitle()}</h2>
-                                {posts.hasDate() ? (
-                                    <time>
-                                        {moment(posts.getDate()).format('dddd, MMMM Do YYYY')}
-                                    </time>
-                                ) : ''}
-                                <hr/>
-                                <div dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
-                            </main>
-                        </div>
+                        <main className="site-main">
+                            <h2>{posts.getTitle()}</h2>
+                            <DateTime time={posts.getDate()}/>
+                            <hr/>
+                            <div dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
+                        </main>
                     </div>
                 </div>
             </DefaultLayout>

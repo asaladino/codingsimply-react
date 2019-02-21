@@ -27,12 +27,10 @@ class Home extends Component {
             <DefaultLayout site={site} menus={menus}>
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
-                        <div id="primary" className="content-area">
-                            <main id="main" className="site-main">
-                                <h3>Home page needs a slider</h3>
-                                <PostsList posts={posts}/>
-                            </main>
-                        </div>
+                        <main className="site-main">
+                            <h3>Home page needs a slider</h3>
+                            <PostsList posts={posts}/>
+                        </main>
                     </div>
                 </div>
             </DefaultLayout>

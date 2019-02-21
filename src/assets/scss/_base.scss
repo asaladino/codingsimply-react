@@ -1,3 +1,13 @@
+#masthead {
+  position: fixed;
+  width: 100%;
+  z-index: 200;
+}
+
+#primary {
+  margin-top: 70px;
+}
+
 .post-entry {
   margin-top: 1rem;
   padding: 2rem 0;
