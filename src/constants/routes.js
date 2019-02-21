@@ -1,6 +1,7 @@
 const routes = {
     HOME: '/',
     PAGE: '/pages',
-    POST: '/posts'
+    POST: '/posts',
+    PROJECTS: '/projects'
 };
 export default routes;

@@ -1,35 +1,36 @@
 import {Component} from "react";
 import {connect} from "react-redux";
 import {site as siteAction} from '../actions/site';
-import {posts as postsAction} from '../actions/posts';
+import {projects as projectsAction} from '../actions/projects';
 import {menus as menuAction} from '../actions/menu';
 import React from "react";
-import PostsList from "../components/PostsList";
 import DefaultLayout from "../components/DefaultLayout";
 
-class Posts extends Component {
+class Project extends Component {
     componentDidMount() {
-        const {site, menus, posts, dispatch} = this.props;
+        const {site, menus, dispatch, match} = this.props;
         if (!site.hasLoaded()) {
             siteAction.get(dispatch);
-        }
-        if (!posts.hasLoaded()) {
-            postsAction.getPosts(dispatch);
         }
         if (!menus.hasLoaded()) {
             menuAction.getMenu(dispatch, 'primary');
         }
+        const {slug} = match.params;
+        if (slug) {
+            projectsAction.getProject(dispatch, slug);
+        }
     }
 
     render() {
-        const {site, menus, posts} = this.props;
+        const {site, menus, projects} = this.props;
         return (
             <DefaultLayout site={site} menus={menus}>
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
                         <main className="site-main">
-                            <h2>Blog</h2>
-                            <PostsList posts={posts}/>
+                            <h2>{projects.getTitle()}</h2>
+                            <hr/>
+                            <div dangerouslySetInnerHTML={{__html: projects.getContent()}}/>
                         </main>
                     </div>
                 </div>
@@ -42,6 +43,6 @@ export default connect(state => {
     return {
         site: state.site,
         menus: state.menus,
-        posts: state.posts
+        projects: state.projects
     };
-})(Posts);
+})(Project);

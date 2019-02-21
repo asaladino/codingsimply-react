@@ -7,19 +7,26 @@ const defaultState = {
     hasLoaded: function () {
         return this.didLoad;
     },
-    getTitle: function (post) {
-        const {rendered} = post.title;
-        return rendered;
-    },
-    getContent: function (post) {
-        if (post == null && this.project == null) {
+    getTitle: function (project) {
+        if (project == null && this.project == null) {
             return '';
         }
-        if (post == null) {
+        if (project == null) {
+            const {rendered} = this.project.title;
+            return rendered;
+        }
+        const {rendered} = project.title;
+        return rendered;
+    },
+    getContent: function (project) {
+        if (project == null && this.project == null) {
+            return '';
+        }
+        if (project == null) {
             const {rendered} = this.project.content;
             return rendered;
         }
-        const {rendered} = post.content;
+        const {rendered} = project.content;
         return rendered;
     }
 };
@@ -29,7 +36,7 @@ const projects = (state = defaultState, action) => {
         return {
             ...state,
             didLoad: true,
-            project: action.data
+            projects: action.data
         }
     }
     if (action.type === actions.GOT_PROJECT) {

@@ -4,7 +4,7 @@ import DefaultHeader from "./DefaultHeader";
 
 class DefaultLayout extends Component {
 
-    render(): React.ReactNode {
+    render() {
         const {site, menus, children} = this.props;
         return  (
             <div id="page" className="site">

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import DateTime from "./DateTime";
 
 class PostsList extends Component {
 
@@ -9,7 +10,7 @@ class PostsList extends Component {
             <div className="row" key={posts.getId(post)}>
                 <div className="large-12 columns post-entry">
                     <h2><Link to={posts.getUrl(post)}>{posts.getTitle(post)}</Link></h2>
-                    <time className="post-date">{posts.getDate(post)}</time>
+                    <DateTime time={posts.getDate(post)}/>
                     <p dangerouslySetInnerHTML={{__html: posts.getExcept(post)}}/>
                 </div>
                 <hr/>
