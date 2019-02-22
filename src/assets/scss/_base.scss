@@ -1,11 +1,13 @@
+$nav-bar-height: 54px;
+
 #masthead {
   position: fixed;
   width: 100%;
   z-index: 200;
 }
 
-#primary {
-  margin-top: 70px;
+.site-main {
+  margin-top: $nav-bar-height;
 }
 
 .post-entry {
@@ -53,12 +55,21 @@
   box-shadow: 0 0 0.25rem 0 $dark-gray;
 }
 
-.project-slide-show {
-  padding: 0;
+.row.slideshow-wrapper {
+  max-width: none;
+}
+.shadow-offset {
+  margin-top: $nav-bar-height;
+  padding-left: 40px;
+  padding-right: 40px;
   background: $light-gray;
   box-shadow: inset 0 0 0.25rem 0 $dark-gray;
+}
 
-  .orbit-slide .orbit-slide-content {
+.project-slide-show {
+  padding: 0;
+
+  .orbit-slide-content {
     margin: 2rem 0;
     padding-bottom: 1rem;
 

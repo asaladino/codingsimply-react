@@ -23,10 +23,10 @@ class Post extends Component {
         }
     };
 
-    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
+    componentDidUpdate(prevProps, prevState, snapshot): void {
         const {site, menus, posts} = this.props;
         if (site.hasLoaded() && menus.hasLoaded() && posts.hasPostLoaded()) {
-            document.querySelectorAll('#main script').forEach(tag => {
+            document.querySelectorAll('#root script').forEach(tag => {
                 const place = document.createElement("div");
                 tag.after(tag, place);
                 postscribe(place, tag.outerHTML);

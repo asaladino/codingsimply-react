@@ -5,7 +5,7 @@ import {projects as actions} from '../constants/actions';
 const projects = {
     getProjects(dispatch) {
         dispatch({type: actions.GET_PROJECTS});
-        axios.get(`${main.baseUrl}/wp-json/wp/v2/projects`)
+        axios.get(`${main.baseUrl}/wp-json/cs/v1/projects`)
             .then((response) => dispatch({
                 type: actions.GOT_PROJECTS,
                 success: true,
@@ -17,20 +17,38 @@ const projects = {
                 data: null
             }));
     },
-    getProject(dispatch, slug) {
+    getProject(dispatch, projects, slug) {
         dispatch({type: actions.GET_PROJECT});
-        dispatch({type: actions.GOT_PROJECT, data: null});
-        axios.get(`${main.baseUrl}/wp-json/wp/v2/projects/?slug=${slug}`)
-            .then((response) => dispatch({
+        dispatch({type: actions.GOT_PROJECT, data: {projects: null, project: null}});
+        if (projects.hasLoaded()) {
+            const project = projects.projects.filter(project => project.post_name === slug);
+            dispatch({
                 type: actions.GOT_PROJECT,
                 success: true,
-                data: response.data[0]
-            }))
-            .catch((error) => dispatch({
-                type: actions.GOT_PROJECT,
-                error: error.message,
-                data: null
-            }));
+                data: {
+                    projects: projects.projects,
+                    project: project.length > 0 ? project[0] : null
+                }
+            })
+        } else {
+            axios.get(`${main.baseUrl}/wp-json/cs/v1/projects`)
+                .then((response) => {
+                    const project = response.data.filter(project => project.post_name === slug);
+                    dispatch({
+                        type: actions.GOT_PROJECT,
+                        success: true,
+                        data: {
+                            projects: response.data,
+                            project: project.length > 0 ? project[0] : null
+                        }
+                    })
+                })
+                .catch((error) => dispatch({
+                    type: actions.GOT_PROJECTS,
+                    error: error.message,
+                    data: null
+                }));
+        }
     }
 };
 

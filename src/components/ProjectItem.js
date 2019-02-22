@@ -8,10 +8,11 @@ class ProjectItem extends Component {
             <div className="large-3 medium-4 small-6 columns post-entry end">
                 <div className="callout text-center no-border" data-equalizer-watch=""
                      style={{height: '224px'}}>
-                    <Link to={`/projects/${project.slug}`}>
+                    <Link to={`/projects/${project.post_name}`}>
                         <div className="project-icon shadow" style={{height: '138px'}}>
                             <div className="project-initials"
-                                 style={{fontSize: '60.5px'}}>Kj
+                                 style={{fontSize: '60.5px'}}>
+                                {projects.getInitials(project)}
                             </div>
                             <div className="project-owner"
                                  style={{fontSize: '24.2px'}}>cs;
