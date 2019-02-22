@@ -7,27 +7,40 @@ const defaultState = {
     hasLoaded: function () {
         return this.didLoad;
     },
+    getPromoted: function () {
+        return this.projects.filter(project => {
+            return project.meta.promote;
+        });
+    },
+    getInitials: function (project) {
+        const title = this.getTitle(project);
+        const parts = title.split(' ');
+        if (parts.length === 1) {
+            return parts[0].substr(0, 1).toUpperCase();
+        }
+        return (parts[0].substr(0, 1) + parts[1].substr(0, 1)).toUpperCase();
+    },
     getTitle: function (project) {
         if (project == null && this.project == null) {
             return '';
         }
         if (project == null) {
-            const {rendered} = this.project.title;
-            return rendered;
+            const {post_title} = this.project;
+            return post_title;
         }
-        const {rendered} = project.title;
-        return rendered;
+        const {post_title} = project;
+        return post_title;
     },
     getContent: function (project) {
         if (project == null && this.project == null) {
             return '';
         }
         if (project == null) {
-            const {rendered} = this.project.content;
-            return rendered;
+            const {post_content} = this.project;
+            return post_content;
         }
-        const {rendered} = project.content;
-        return rendered;
+        const {post_content} = project;
+        return post_content;
     }
 };
 
@@ -42,7 +55,8 @@ const projects = (state = defaultState, action) => {
     if (action.type === actions.GOT_PROJECT) {
         return {
             ...state,
-            project: action.data
+            projects: action.data.projects,
+            project: action.data.project
         }
     }
 

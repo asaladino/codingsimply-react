@@ -8,7 +8,7 @@ import DefaultLayout from "../components/DefaultLayout";
 
 class Project extends Component {
     componentDidMount() {
-        const {site, menus, dispatch, match} = this.props;
+        const {site, menus, projects, dispatch, match} = this.props;
         if (!site.hasLoaded()) {
             siteAction.get(dispatch);
         }
@@ -17,7 +17,7 @@ class Project extends Component {
         }
         const {slug} = match.params;
         if (slug) {
-            projectsAction.getProject(dispatch, slug);
+            projectsAction.getProject(dispatch, projects, slug);
         }
     }
 
