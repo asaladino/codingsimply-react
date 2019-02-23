@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import ProjectIcon from "./ProjectIcon";
 
 class ProjectItem extends Component {
     render() {
@@ -9,15 +10,7 @@ class ProjectItem extends Component {
                 <div className="callout text-center no-border" data-equalizer-watch=""
                      style={{height: '224px'}}>
                     <Link to={`/projects/${project.post_name}`}>
-                        <div className="project-icon shadow" style={{height: '138px'}}>
-                            <div className="project-initials"
-                                 style={{fontSize: '60.5px'}}>
-                                {projects.getInitials(project)}
-                            </div>
-                            <div className="project-owner"
-                                 style={{fontSize: '24.2px'}}>cs;
-                            </div>
-                        </div>
+                        <ProjectIcon initials={projects.getInitials(project)} />
                         <strong>{projects.getTitle(project)}</strong>
                     </Link>
                 </div>
