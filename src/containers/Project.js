@@ -1,22 +1,14 @@
 import {Component} from "react";
 import {connect} from "react-redux";
-import {site as siteAction} from '../actions/site';
 import {projects as projectsAction} from '../actions/projects';
-import {menus as menuAction} from '../actions/menu';
 import React from "react";
-import DefaultLayout from "../components/DefaultLayout";
 import ProjectIcon from "../components/ProjectIcon";
 import Slider from "react-slick/lib";
+import Loading from "../components/Loading";
 
 class Project extends Component {
     componentDidMount() {
-        const {site, menus, projects, dispatch, match} = this.props;
-        if (!site.hasLoaded()) {
-            siteAction.get(dispatch);
-        }
-        if (!menus.hasLoaded()) {
-            menuAction.getMenu(dispatch, 'primary');
-        }
+        const {projects, dispatch, match} = this.props;
         const {slug} = match.params;
         if (slug) {
             projectsAction.getProject(dispatch, projects, slug);
@@ -24,7 +16,7 @@ class Project extends Component {
     }
 
     galleryImage = (image) => {
-        if(image) {
+        if (image) {
             return (
                 <figure className="orbit-figure">
                     <img
@@ -44,41 +36,44 @@ class Project extends Component {
             slidesToShow: 1,
             slidesToScroll: 1
         };
-        const {site, menus, projects} = this.props;
+        const {projects, site, menus} = this.props;
         const {project} = projects;
-        if (project === null) {
-            return (
-                <DefaultLayout site={site} menus={menus}>
-                    <div className="row">
-                        <div className="large-8 large-push-2 columns">
-                            <article className="site-main">
-                                Loading
-                            </article>
-                        </div>
-                    </div>
-                </DefaultLayout>
-            )
-        }
 
-        return (
-            <DefaultLayout site={site} menus={menus}>
+
+        if (project === null || (!projects.hasLoaded() && !site.hasLoaded() && !menus.hasLoaded())) {
+            return (
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
                         <main className="site-main">
-                            <div className="row">
+                            <div className='text-center'><Loading/></div>
+                        </main>
+                    </div>
+                </div>
+            );
+        }
+
+        return (
+            <div className="row">
+                <div className="large-8 large-push-2 columns">
+                    <main className="site-main">
+                        <React.Fragment>
+                            <div className="row animated fadeIn">
                                 <div className="large-3 medium-4 small-6 columns">
-                                    <ProjectIcon initials={projects.getInitials(project)}/>
+                                    <ProjectIcon initials={project.getInitials()}/>
                                 </div>
                                 <div className="large-9 medium-8 small-6 columns">
                                     <header className="entry-header">
-                                        <h2 className="entry-title">{projects.getTitle()}</h2>
+                                        <h2 className="entry-title">{project.getTitle()}</h2>
                                         <div className="row">
                                             <div className="small-12 columns text-right">
                                                 <br/><br/>
-                                                {project.meta.git_url ? (
-                                                    <a className="button secondary" href={project.meta.git_url}
+                                                {project.getGitUrl() ? (
+                                                    <a className="button secondary"
+                                                       href={project.getGitUrl()}
+                                                       rel="noopener noreferrer"
                                                        target="_blank">
-                                                        <i className="fa fa-github" aria-hidden="true"></i>
+                                                        <i className="fa fa-github"
+                                                           aria-hidden="true">{' '}</i>
                                                         Fork on Github
                                                     </a>
                                                 ) : ''}
@@ -89,23 +84,23 @@ class Project extends Component {
                             </div>
                             <hr/>
                             <div className="entry-content">
-                                <div dangerouslySetInnerHTML={{__html: projects.getContent()}}/>
                                 <div className="row">
                                     <div className="large-8 large-push-2 columns">
                                         <Slider {...settings}>
-                                            {this.galleryImage(project.meta.screenshot_url)}
-                                            {this.galleryImage(project.meta.screenshot_url_2)}
-                                            {this.galleryImage(project.meta.screenshot_url_3)}
-                                            {this.galleryImage(project.meta.screenshot_url_4)}
-                                            {this.galleryImage(project.meta.screenshot_url_5)}
+                                            {this.galleryImage(project.getScreenshot())}
+                                            {this.galleryImage(project.getScreenshot2())}
+                                            {this.galleryImage(project.getScreenshot3())}
+                                            {this.galleryImage(project.getScreenshot4())}
+                                            {this.galleryImage(project.getScreenshot5())}
                                         </Slider>
                                     </div>
                                 </div>
+                                <div dangerouslySetInnerHTML={{__html: project.getContent()}}/>
                             </div>
-                        </main>
-                    </div>
+                        </React.Fragment>
+                    </main>
                 </div>
-            </DefaultLayout>
+            </div>
         );
     }
 }

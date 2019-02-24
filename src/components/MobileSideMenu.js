@@ -5,15 +5,12 @@ class MobileSideMenu extends Component {
 
     render() {
         const {menus} = this.props;
+        // @TODO move style to class.
         return (
-            <div className="row">
+            <div className="row" style={{marginTop: '60px'}}>
                 <div className="large-12 columns">
-                    <h3>Options</h3>
                     <ul className="menu vertical">
                         <PrimaryMenu menus={menus}/>
-                        <li>
-                            <button data-open="search-modal">Search</button>
-                        </li>
                     </ul>
                 </div>
             </div>

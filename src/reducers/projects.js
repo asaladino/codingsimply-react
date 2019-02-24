@@ -1,63 +1,23 @@
 import {projects as actions} from "../constants/actions";
+import ProjectsModel from "../models/ProjectsModel";
+import ProjectModel from "../models/ProjectModel";
 
-const defaultState = {
-    projects: [],
-    project: null,
-    didLoad: false,
-    hasLoaded: function () {
-        return this.didLoad;
-    },
-    getPromoted: function () {
-        return this.projects.filter(project => {
-            return project.meta.promote;
-        });
-    },
-    getInitials: function (project) {
-        const title = this.getTitle(project);
-        const parts = title.split(' ');
-        if (parts.length === 1) {
-            return parts[0].substr(0, 1).toUpperCase();
-        }
-        return (parts[0].substr(0, 1) + parts[1].substr(0, 1)).toUpperCase();
-    },
-    getTitle: function (project) {
-        if (project == null && this.project == null) {
-            return '';
-        }
-        if (project == null) {
-            const {post_title} = this.project;
-            return post_title;
-        }
-        const {post_title} = project;
-        return post_title;
-    },
-    getContent: function (project) {
-        if (project == null && this.project == null) {
-            return '';
-        }
-        if (project == null) {
-            const {post_content} = this.project;
-            return post_content;
-        }
-        const {post_content} = project;
-        return post_content;
-    }
-};
+const defaultState = new ProjectsModel();
 
 const projects = (state = defaultState, action) => {
     if (action.type === actions.GOT_PROJECTS) {
-        return {
+        return new ProjectsModel({
             ...state,
             didLoad: true,
-            projects: action.data
-        }
+            projects: action.data.map(project => new ProjectModel(project))
+        });
     }
     if (action.type === actions.GOT_PROJECT) {
-        return {
+        return new ProjectsModel({
             ...state,
-            projects: action.data.projects,
-            project: action.data.project
-        }
+            projects: action.data.projects.map(project => new ProjectModel(project)),
+            project: action.data.project === null ? null : new ProjectModel(action.data.project)
+        });
     }
 
     return state;

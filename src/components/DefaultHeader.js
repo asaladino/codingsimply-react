@@ -4,17 +4,15 @@ import PrimaryMenu from "./PrimaryMenu";
 class DefaultHeader extends Component {
 
     render() {
-        const {site, menus} = this.props;
+        const {site, menus, onToggleMenu} = this.props;
         return (
-            <header id="masthead" className="site-header">
-                <div data-sticky-container>
-                    <div className="top-bar" id="main-menu" data-sticky data-sticky-on="small"
-                         data-options="marginTop:0;"
-                         data-top-anchor="1" style={{width: "100%"}}>
+            <header id="masthead" className="site-header animated slideInDown">
+                <div>
+                    <div className="top-bar" id="main-menu" style={{width: "100%"}}>
                         <div className="top-bar-left">
-                            <ul className="menu" data-dropdown-menu>
-                                <li className="show-for-small-only">
-                                    <button data-toggle="offCanvas">
+                            <ul className="menu">
+                                <li className='show-for-small-only'>
+                                    <button data-toggle="offCanvas" onClick={onToggleMenu}>
                                         <i className="fa fa-bars">{' '}</i>
                                     </button>
                                 </li>
@@ -23,7 +21,7 @@ class DefaultHeader extends Component {
                                 </li>
                             </ul>
                         </div>
-                        <div className="top-bar-right">
+                        <div className="top-bar-right hide-for-small-only">
                             <PrimaryMenu menus={menus}/>
                         </div>
                     </div>
