@@ -1,22 +1,14 @@
 import {posts as postsAction} from "../actions/posts";
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {site as siteAction} from "../actions/site";
-import {menus as menuAction} from "../actions/menu";
-import DefaultLayout from "../components/DefaultLayout";
 import postscribe from "postscribe";
 import DateTime from "../components/DateTime";
+import Loading from "../components/Loading";
 
 class Post extends Component {
 
     componentDidMount() {
-        const {site, menus, dispatch, match} = this.props;
-        if (!site.hasLoaded()) {
-            siteAction.get(dispatch);
-        }
-        if (!menus.hasLoaded()) {
-            menuAction.getMenu(dispatch, 'primary');
-        }
+        const {dispatch, match} = this.props;
         const {slug} = match.params;
         if (slug) {
             postsAction.getPost(dispatch, slug);
@@ -24,8 +16,8 @@ class Post extends Component {
     };
 
     componentDidUpdate(prevProps, prevState, snapshot): void {
-        const {site, menus, posts} = this.props;
-        if (site.hasLoaded() && menus.hasLoaded() && posts.hasPostLoaded()) {
+        const {posts} = this.props;
+        if (posts.hasPostLoaded()) {
             document.querySelectorAll('#root script').forEach(tag => {
                 const place = document.createElement("div");
                 tag.after(tag, place);
@@ -35,33 +27,34 @@ class Post extends Component {
     }
 
     render() {
-        const {site, menus, posts} = this.props;
+        const {posts} = this.props;
 
-        if (!site.hasLoaded() || !menus.hasLoaded() || !posts.hasPostLoaded()) {
-            return <div>Loading...</div>;
+        let content = <div className='text-center'><Loading/></div>;
+        if (posts.hasPostLoaded() && posts.post !== null) {
+            content = (
+                <div className='animated fadeIn' key={posts.post.id}>
+                    <h2>{posts.getTitle()}</h2>
+                    <DateTime time={posts.getDate()}/>
+                    <hr/>
+                    <div dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
+                </div>
+            );
         }
 
         return (
-            <DefaultLayout site={site} menus={menus}>
-                <div className="row">
-                    <div className="large-8 large-push-2 columns">
-                        <main className="site-main">
-                            <h2>{posts.getTitle()}</h2>
-                            <DateTime time={posts.getDate()}/>
-                            <hr/>
-                            <div dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
-                        </main>
-                    </div>
+            <div className="row">
+                <div className="large-8 large-push-2 columns">
+                    <main className="site-main">
+                        {content}
+                    </main>
                 </div>
-            </DefaultLayout>
+            </div>
         );
     }
 }
 
 export default connect(state => {
     return {
-        site: state.site,
-        menus: state.menus,
         posts: state.posts
     };
 })(Post);

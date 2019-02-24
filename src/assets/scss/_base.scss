@@ -6,6 +6,12 @@ $nav-bar-height: 54px;
   z-index: 200;
 }
 
+.row {
+  .slick-next:before, .slick-prev:before {
+    color: #222;
+  }
+}
+
 .site-main {
   margin-top: $nav-bar-height;
 }
@@ -58,6 +64,7 @@ $nav-bar-height: 54px;
 .row.slideshow-wrapper {
   max-width: none;
 }
+
 .shadow-offset {
   margin-top: $nav-bar-height;
   padding-left: 40px;

@@ -1,25 +1,17 @@
 import {Component} from "react";
 import {connect} from "react-redux";
-import {site as siteAction} from '../actions/site';
 import {posts as postsAction} from '../actions/posts';
-import {menus as menuAction} from '../actions/menu';
 import {projects as projectsAction} from '../actions/projects';
 import React from "react";
 import PostsList from "../components/PostsList";
-import DefaultLayout from "../components/DefaultLayout";
 import ProjectSlideshow from "../components/ProjectSlideshow";
+import Loading from "../components/Loading";
 
 class Home extends Component {
     componentDidMount() {
-        const {site, menus, posts, dispatch, projects} = this.props;
-        if (!site.hasLoaded()) {
-            siteAction.get(dispatch);
-        }
+        const {posts, dispatch, projects} = this.props;
         if (!posts.hasLoaded()) {
             postsAction.getPosts(dispatch);
-        }
-        if (!menus.hasLoaded()) {
-            menuAction.getMenu(dispatch, 'primary');
         }
         if (!projects.hasLoaded()) {
             projectsAction.getProjects(dispatch);
@@ -27,13 +19,19 @@ class Home extends Component {
     }
 
     render() {
-        const {site, menus, posts, projects} = this.props;
+        const {posts, projects, site, menus} = this.props;
+        if (!posts.hasLoaded() && !projects.hasLoaded() && !site.hasLoaded() && !menus.hasLoaded()) {
+            return <div className='text-center'><Loading/></div>;
+        }
+
         return (
-            <DefaultLayout site={site} menus={menus}>
+            <React.Fragment>
                 <div className="row slideshow-wrapper">
-                    <div className='shadow-offset'>
-                        <ProjectSlideshow projects={projects.getPromoted()}/>
-                    </div>
+                    {projects.hasLoaded() ? (
+                        <div className='shadow-offset animated slideInLeft'>
+                            <ProjectSlideshow projects={projects.getPromoted()}/>
+                        </div>
+                    ) : ''}
                 </div>
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
@@ -42,7 +40,7 @@ class Home extends Component {
                         </main>
                     </div>
                 </div>
-            </DefaultLayout>
+            </React.Fragment>
         );
     }
 }

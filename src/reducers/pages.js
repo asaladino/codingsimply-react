@@ -53,6 +53,7 @@ const pages = (state = defaultState, action) => {
     if (action.type === actions.GOT_PAGE) {
         return {
             ...state,
+            didLoad: true,
             page: action.data
         }
     }

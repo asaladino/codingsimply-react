@@ -1,22 +1,33 @@
 // @flow
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import {Redirect} from "react-router";
 
 class PrimaryMenu extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            showSearch: false
+    state = {
+        showSearch: false,
+        gotoSearch: false,
+        term: ''
+    };
+
+    search = (event) => {
+        if(event.key === 'Enter') {
+            this.setState({gotoSearch: true, term: event.target.value});
         }
-    }
+    };
+
 
     render() {
+        if(this.state.gotoSearch) {
+            return <Redirect to={`/search/${this.state.term}`}/>
+        }
         const {menus} = this.props;
         const {showSearch} = this.state;
+        // @todo move state term and show search to redux store.
         return (
             <nav>
-                <ul className="menu hide-for-small-only">
+                <ul className="menu">
                     {menus.getItems().map(item => {
                         return (
                             <li key={menus.getId(item)}>
@@ -27,8 +38,12 @@ class PrimaryMenu extends Component {
                         );
                     })}
                     <li>
-                        <input placeholder='search...' name='search' type='text'
-                               className={!showSearch ? `hide` : `show`}/>
+                        <input placeholder='search...'
+                               name='search'
+                               type='text'
+                               className={!showSearch ? `hide` : `show`}
+                               onKeyPress={this.search}
+                        />
                     </li>
                     <li>
                         <button onClick={(() => {

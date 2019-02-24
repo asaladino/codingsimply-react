@@ -1,47 +1,35 @@
 import {Component} from "react";
 import {connect} from "react-redux";
-import {site as siteAction} from '../actions/site';
 import {posts as postsAction} from '../actions/posts';
-import {menus as menuAction} from '../actions/menu';
 import React from "react";
 import PostsList from "../components/PostsList";
-import DefaultLayout from "../components/DefaultLayout";
 
 class Posts extends Component {
     componentDidMount() {
-        const {site, menus, posts, dispatch} = this.props;
-        if (!site.hasLoaded()) {
-            siteAction.get(dispatch);
-        }
+        const {posts, dispatch} = this.props;
         if (!posts.hasLoaded()) {
             postsAction.getPosts(dispatch);
-        }
-        if (!menus.hasLoaded()) {
-            menuAction.getMenu(dispatch, 'primary');
         }
     }
 
     render() {
-        const {site, menus, posts} = this.props;
+        const {posts} = this.props;
         return (
-            <DefaultLayout site={site} menus={menus}>
-                <div className="row">
-                    <div className="large-8 large-push-2 columns">
-                        <main className="site-main">
-                            <h2>Blog</h2>
-                            <PostsList posts={posts}/>
-                        </main>
-                    </div>
+            <div className="row">
+                <div className="large-8 large-push-2 columns">
+                    <main className="site-main">
+                        <h2>Blog</h2>
+                        <hr/>
+                        <PostsList posts={posts}/>
+                    </main>
                 </div>
-            </DefaultLayout>
+            </div>
         );
     }
 }
 
 export default connect(state => {
     return {
-        site: state.site,
-        menus: state.menus,
         posts: state.posts
     };
 })(Posts);
