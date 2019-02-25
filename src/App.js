@@ -33,6 +33,7 @@ class App extends Component {
                 <DefaultLayout site={site} menus={menus}>
                     <Route exact path={routes.HOME} component={Home}/>
                     <Route exact path={`${routes.POST}/:slug`} component={props => <Post {...props}/>}/>
+                    <Route exact path={`${routes.HOME}(\\d+/\\d+/\\d+)/:slug`} component={props => <Post {...props}/>}/>
                     <Route exact path={`${routes.POST}/`} component={Posts}/>
                     <Route exact path={`${routes.PROJECTS}/:slug`} component={props => <Project {...props}/>}/>
                     <Route exact path={`${routes.PROJECTS}/`} component={Projects}/>

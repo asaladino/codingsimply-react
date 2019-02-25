@@ -1,23 +1,11 @@
 import {site as actions} from '../constants/actions';
+import SiteModel from "../models/SiteModel";
 
-const defaultState = {
-    name: '',
-    description: '',
-    url: '',
-    hasLoaded: function () {
-        return this.name !== '';
-    }
-};
+const defaultState = new SiteModel();
 
 const site = (state = defaultState, action) => {
     if (action.type === actions.GOT) {
-        const {name, description, url} = action.data;
-        return {
-            ...state,
-            name: name,
-            description: description,
-            url: url
-        }
+        return new SiteModel({...state, ...action.data});
     }
     return state;
 };
