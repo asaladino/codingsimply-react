@@ -19,7 +19,6 @@ class Pages extends Component {
             content = (
                 <div className='animated fadeIn' key={pages.page.id}>
                     <h2>{pages.getTitle()}</h2>
-                    <hr/>
                     <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
                     <div dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
                 </div>

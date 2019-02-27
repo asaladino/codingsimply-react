@@ -66,7 +66,6 @@ class Project extends Component {
                                         <h2 className="entry-title">{project.getTitle()}</h2>
                                         <div className="row">
                                             <div className="small-12 columns text-right">
-                                                <br/><br/>
                                                 {project.getGitUrl() ? (
                                                     <a className="button secondary"
                                                        href={project.getGitUrl()}
@@ -82,7 +81,6 @@ class Project extends Component {
                                     </header>
                                 </div>
                             </div>
-                            <hr/>
                             <div className="entry-content">
                                 <div className="row">
                                     <div className="large-8 large-push-2 columns">
