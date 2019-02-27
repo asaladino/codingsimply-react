@@ -1,4 +1,3 @@
-// @flow
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {Redirect} from "react-router";
@@ -17,21 +16,19 @@ class PrimaryMenu extends Component {
         }
     };
 
-
     render() {
         if(this.state.gotoSearch) {
             return <Redirect to={`/search/${this.state.term}`}/>
         }
-        const {menus} = this.props;
+        const {menus, onToggleMenu} = this.props;
         const {showSearch} = this.state;
-        // @todo move state term and show search to redux store.
         return (
             <nav>
                 <ul className="menu">
                     {menus.getItems().map(item => {
                         return (
                             <li key={menus.getId(item)}>
-                                <Link to={menus.getUrl(item)}>
+                                <Link to={menus.getUrl(item)} onClick={onToggleMenu}>
                                     {menus.getTitle(item)}
                                 </Link>
                             </li>

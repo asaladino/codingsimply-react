@@ -19,7 +19,6 @@ class Posts extends Component {
                 <div className="large-8 large-push-2 columns">
                     <main className="site-main">
                         <h2>Blog</h2>
-                        <hr/>
                         <PostsList posts={posts}/>
                     </main>
                 </div>

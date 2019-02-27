@@ -1,6 +1,6 @@
 {
   "name": "codingsimply-react",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
@@ -10,6 +10,7 @@
     "moment": "^2.24.0",
     "postscribe": "^2.0.8",
     "react": "^16.8.2",
+    "react-burger-menu": "^2.6.5",
     "react-dom": "^16.8.2",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
@@ -42,6 +43,7 @@
     "@babel/core": "^7.3.3",
     "@babel/preset-flow": "^7.0.0",
     "flow-bin": "^0.93.0",
+    "flow-typed": "^2.5.1",
     "node-sass": "^4.11.0"
   }
 }

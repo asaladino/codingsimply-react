@@ -35,7 +35,6 @@ class Post extends Component {
                 <div className='animated fadeIn' key={posts.post.id}>
                     <h2>{posts.getTitle()}</h2>
                     <DateTime time={posts.getDate()}/>
-                    <hr/>
                     <div dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
                 </div>
             );

@@ -22,6 +22,17 @@ $nav-bar-height: 54px;
   margin-bottom: 1rem;
 }
 
+.bm-menu {
+  background: #fff;
+}
+
+#page .top-bar {
+  background-color: #fff;
+  .menu {
+    background-color: #fff;
+  }
+}
+
 .post-date {
   font-size: .75rem;
   display: block;
@@ -69,8 +80,8 @@ $nav-bar-height: 54px;
   margin-top: $nav-bar-height;
   padding-left: 40px;
   padding-right: 40px;
-  background: $light-gray;
-  box-shadow: inset 0 0 0.25rem 0 $dark-gray;
+  //background: $light-gray;
+  //box-shadow: inset 0 0 0.25rem 0 $dark-gray;
 }
 
 .project-slide-show {
