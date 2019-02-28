@@ -38,6 +38,7 @@ class App extends Component {
                     <Route exact path={`${routes.PROJECTS}/:slug`} component={props => <Project {...props}/>}/>
                     <Route exact path={`${routes.PROJECTS}/`} component={Projects}/>
                     <Route exact path={`${routes.HOME}page-:slug/`} component={props => <Pages {...props}/>}/>
+                    <Route exact path={`${routes.HOME}search/`} component={props => <Search {...props}/>}/>
                     <Route exact path={`${routes.HOME}search/:term`} component={props => <Search {...props}/>}/>
                 </DefaultLayout>
             </BrowserRouter>
