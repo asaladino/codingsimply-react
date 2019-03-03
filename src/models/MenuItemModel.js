@@ -6,6 +6,10 @@ export default class MenuItemModel {
     title = '';
     url = '';
 
+    constructor(state) {
+        Object.assign(this, state);
+    }
+
     getTitle() {
         return this.title;
     }

@@ -1,14 +1,12 @@
-import {main} from "../constants/main";
 import MenuItemModel from "./MenuItemModel";
 
 export default class MenuModel {
 
-    items: null;
+    items: [] = null;
 
     constructor(state) {
         Object.assign(this, state);
     }
-
 
     hasLoaded() {
         return this.items !== null;
@@ -18,6 +16,7 @@ export default class MenuModel {
         if (this.items === null) {
             return [];
         }
-        return this.items;
+
+        return this.items.map(item => new MenuItemModel(item));
     }
 }
