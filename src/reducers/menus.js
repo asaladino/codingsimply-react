@@ -7,11 +7,12 @@ const defaultState = new MenuModel();
 
 const menus = (state = defaultState, action) => {
     if (action.type === actions.GOT_MENU) {
-        // console.log(action);
-        return new MenuModel({
+        console.log('got stuff.');
+        console.log(action);
+        return {
             ...state,
             menu: action.data
-        })
+        }
     }
 
     return state;
