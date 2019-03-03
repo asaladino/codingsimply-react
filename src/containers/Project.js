@@ -83,7 +83,7 @@ class Project extends Component {
                             </div>
                             <div className="entry-content">
                                 <div className="row">
-                                    <div className="large-8 large-push-2 columns">
+                                    <div className="large-8 small-10 small-push-1 large-push-2 columns">
                                         <Slider {...settings}>
                                             {this.galleryImage(project.getScreenshot())}
                                             {this.galleryImage(project.getScreenshot2())}
