@@ -22,7 +22,7 @@ class Projects extends Component {
                         <div className="row">
                             {projects.projects.map((project, index) => {
                                 return (
-                                    <div className={`animated slideInRight`}
+                                    <div className={`animated zoomIn`}
                                          style={{animationDelay: (index * 200) + 'ms'}}
                                          key={project.getId()}>
                                         <ProjectItem project={project}/>

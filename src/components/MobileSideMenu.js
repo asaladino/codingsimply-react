@@ -21,7 +21,7 @@ class MobileSideMenu extends Component {
                         </ul>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mobile-side">
                     <div className="large-12 columns">
                         <ul className="menu vertical">
                             <PrimaryMenu menus={menus} onToggleMenu={onToggleMenu}/>

@@ -21,6 +21,7 @@ class Search extends Component {
                 <div className="large-8 large-push-2 columns">
                     <main className="site-main">
                         <h2>Search</h2>
+                        <p>Not just yet.</p>
                     </main>
                 </div>
             </div>

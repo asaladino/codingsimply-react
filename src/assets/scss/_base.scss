@@ -12,6 +12,10 @@ $nav-bar-height: 54px;
   }
 }
 
+.project-item a {
+  text-decoration: none;
+}
+
 .site-main {
   margin-top: $nav-bar-height;
 }
@@ -26,11 +30,11 @@ $nav-bar-height: 54px;
   background: #fff;
 }
 
-#page .top-bar {
+#page .top-bar, #page .mobile-side {
   background-color: #fff;
   .menu {
     background-color: #fff;
-    i.fa {
+    a svg {
       margin-right: 10px;
     }
   }

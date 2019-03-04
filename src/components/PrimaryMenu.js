@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class PrimaryMenu extends Component {
 
@@ -11,8 +12,9 @@ class PrimaryMenu extends Component {
                     {menus.getItems().map(item => {
                         return (
                             <li key={item.getId()}>
+
                                 <Link to={item.getUrl()} onClick={onToggleMenu}>
-                                    <i className={`fa fa-${item.getTitle().toLowerCase()}`}/>
+                                    <FontAwesomeIcon icon={item.getIcon()} />
                                     {item.getTitle()}
                                 </Link>
                             </li>

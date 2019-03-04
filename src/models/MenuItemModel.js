@@ -14,6 +14,16 @@ export default class MenuItemModel {
         return this.title;
     }
 
+    getIcon() {
+        if(this.getTitle().toLowerCase() === 'profile') {
+            return 'user-alt';
+        }
+        if(this.getTitle().toLowerCase() === 'portfolio') {
+            return 'bookmark';
+        }
+        return this.getTitle().toLowerCase();
+    }
+
     getId() {
         return this.ID;
     }

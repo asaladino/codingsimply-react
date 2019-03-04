@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Loading extends Component {
     render() {
         return (
             <span style={{fontSize: '32px'}}>
-                <i className="fa fa-spinner fa-spin fa-3x fa-fwr"/>
+                <FontAwesomeIcon icon='spinner' size='3x' spin/>
                 <span className="sr-only">Loading...</span>
             </span>
         );
