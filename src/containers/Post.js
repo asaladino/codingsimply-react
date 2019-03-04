@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import postscribe from "postscribe";
 import DateTime from "../components/DateTime";
 import Loading from "../components/Loading";
+import {contentClickHandler} from "../components/HtmlRouteHelper";
 
 class Post extends Component {
 
@@ -27,7 +28,7 @@ class Post extends Component {
     }
 
     render() {
-        const {posts} = this.props;
+        const {posts, history} = this.props;
 
         let content = <div className='text-center'><Loading/></div>;
         if (posts.hasPostLoaded() && posts.post !== null) {
@@ -35,7 +36,8 @@ class Post extends Component {
                 <div className='animated fadeIn' key={posts.post.id}>
                     <h2>{posts.getTitle()}</h2>
                     <DateTime time={posts.getDate()}/>
-                    <div dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
+                    <div onClick={(e) => contentClickHandler(e, history)}
+                         dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
                 </div>
             );
         }

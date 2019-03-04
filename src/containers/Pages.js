@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {pages as pagesAction} from "../actions/pages";
 import Loading from "../components/Loading";
+import {contentClickHandler} from "../components/HtmlRouteHelper";
 
 class Pages extends Component {
     componentDidMount() {
@@ -13,14 +14,15 @@ class Pages extends Component {
     }
 
     render() {
-        const {pages} = this.props;
+        const {pages, history} = this.props;
         let content = <div className='text-center'><Loading/></div>;
         if (pages.hasLoaded()) {
             content = (
                 <div className='animated fadeIn' key={pages.page.id}>
                     <h2>{pages.getTitle()}</h2>
                     <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
-                    <div dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
+                    <div onClick={(e) => contentClickHandler(e, history)}
+                         dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
                 </div>
             );
         }

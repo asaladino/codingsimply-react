@@ -4,6 +4,10 @@ import routes from "./constants/routes";
 import {BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars} from '@fortawesome/free-solid-svg-icons'
+
+
 import Home from "./containers/Home";
 import Post from "./containers/Post";
 import Posts from "./containers/Posts";
@@ -14,9 +18,11 @@ import Search from "./containers/Search";
 import {site as siteAction} from "./actions/site";
 import {menus as menuAction} from "./actions/menu";
 import DefaultLayout from "./components/DefaultLayout";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
 
 class App extends Component {
     componentDidMount() {
+        library.add(faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner);
         const {site, menus, dispatch} = this.props;
         if (!site.hasLoaded()) {
             siteAction.get(dispatch);
