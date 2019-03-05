@@ -31,10 +31,17 @@ const projects = {
     GOT_PROJECT: 'GOT_PROJECT'
 };
 
+const search = {
+    GET_SEARCH_RESULTS: 'GET_SEARCH_RESULTS',
+    GOT_SEARCH_RESULTS: 'GOT_SEARCH_RESULTS',
+    SET_SEARCH_TERM: 'SET_SEARCH_TERM'
+};
+
 export {
     site,
     pages,
     posts,
     projects,
-    menu
+    menu,
+    search
 };

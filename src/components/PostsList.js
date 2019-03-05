@@ -13,7 +13,6 @@ class PostsList extends Component {
                     <DateTime time={posts.getDate(post)}/>
                     <p dangerouslySetInnerHTML={{__html: posts.getExcept(post)}}/>
                 </div>
-                <hr/>
             </div>
         );
     }
