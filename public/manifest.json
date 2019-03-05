@@ -1,14 +1,14 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Coding Simply",
+  "name": "Complexity is your undoing",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://codingsimply.com/wp-content/themes/react-base/react-apps/codingsimply/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://codingsimply.com/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

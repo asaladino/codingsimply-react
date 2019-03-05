@@ -1,10 +1,10 @@
 import {posts as postsAction} from "../actions/posts";
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import postscribe from "postscribe";
 import DateTime from "../components/DateTime";
 import Loading from "../components/Loading";
-import {contentClickHandler} from "../components/HtmlRouteHelper";
+import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
+import {loadInlineScripts} from "../components/helpers/InlineScriptHelper";
 
 class Post extends Component {
 
@@ -19,17 +19,12 @@ class Post extends Component {
     componentDidUpdate(prevProps, prevState, snapshot): void {
         const {posts} = this.props;
         if (posts.hasPostLoaded()) {
-            document.querySelectorAll('#root script').forEach(tag => {
-                const place = document.createElement("div");
-                tag.after(tag, place);
-                postscribe(place, tag.outerHTML);
-            });
+            loadInlineScripts();
         }
     }
 
     render() {
         const {posts, history} = this.props;
-
         let content = <div className='text-center'><Loading/></div>;
         if (posts.hasPostLoaded() && posts.post !== null) {
             content = (

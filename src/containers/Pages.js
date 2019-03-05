@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {pages as pagesAction} from "../actions/pages";
 import Loading from "../components/Loading";
-import {contentClickHandler} from "../components/HtmlRouteHelper";
+import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 
 class Pages extends Component {
     componentDidMount() {
