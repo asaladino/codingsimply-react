@@ -5,6 +5,7 @@ import React from "react";
 import ProjectIcon from "../components/ProjectIcon";
 import Slider from "react-slick/lib";
 import Loading from "../components/Loading";
+import Highlight from "react-highlight";
 
 class Project extends Component {
     componentDidMount() {
@@ -38,7 +39,6 @@ class Project extends Component {
         };
         const {projects, site, menus} = this.props;
         const {project} = projects;
-
 
         if (project === null || (!projects.hasLoaded() && !site.hasLoaded() && !menus.hasLoaded())) {
             return (
@@ -93,7 +93,9 @@ class Project extends Component {
                                         </Slider>
                                     </div>
                                 </div>
-                                <div dangerouslySetInnerHTML={{__html: project.getContent()}}/>
+                                <Highlight innerHTML={true}>
+                                    {project.getContent()}
+                                </Highlight>
                             </div>
                         </React.Fragment>
                     </main>

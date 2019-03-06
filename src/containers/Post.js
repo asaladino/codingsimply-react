@@ -5,6 +5,7 @@ import DateTime from "../components/DateTime";
 import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import {loadInlineScripts} from "../components/helpers/InlineScriptHelper";
+import Highlight from "react-highlight";
 
 class Post extends Component {
 
@@ -31,8 +32,12 @@ class Post extends Component {
                 <div className='animated fadeIn' key={posts.post.id}>
                     <h2>{posts.getTitle()}</h2>
                     <DateTime time={posts.getDate()}/>
-                    <div onClick={(e) => contentClickHandler(e, history)}
-                         dangerouslySetInnerHTML={{__html: posts.getContent()}}/>
+
+                    <div onClick={(e) => contentClickHandler(e, history)}>
+                        <Highlight innerHTML={true}>
+                            {posts.getContent()}
+                        </Highlight>
+                    </div>
                 </div>
             );
         }
