@@ -4,8 +4,9 @@ import routes from "./constants/routes";
 import {BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner} from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
 import Home from "./containers/Home";
 import Post from "./containers/Post";
@@ -21,7 +22,7 @@ import DefaultLayout from "./components/DefaultLayout";
 class App extends Component {
     constructor(props) {
         super(props);
-        library.add(faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner);
+        library.add(faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner, faGithub);
     }
 
     componentDidMount() {

@@ -15,22 +15,44 @@ export default class MenuItemModel {
     }
 
     getIcon() {
-        if(this.getTitle().toLowerCase() === 'profile') {
+        if (this.getTitle().toLowerCase() === 'profile') {
             return 'user-alt';
         }
-        if(this.getTitle().toLowerCase() === 'portfolio') {
+        if (this.getTitle().toLowerCase() === 'portfolio') {
             return 'bookmark';
         }
         return this.getTitle().toLowerCase();
+    }
+
+    getIconPrefix() {
+        if (this.getTitle().toLowerCase() === 'github') {
+            return 'fab';
+        }
+        return 'fas';
     }
 
     getId() {
         return this.ID;
     }
 
+    isInternalLink() {
+        for(let alias of main.aliases) {
+            if(this.url.indexOf(alias) > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     getUrl() {
-        return this.url.replace('https://', '')
-            .replace('http://', '')
-            .replace(main.domain, '');
+        return this.url;
+    }
+
+    getInternalUrl() {
+        let url = this.url.replace('https://', '').replace('http://', '');
+        for(let alias of main.aliases) {
+            url = url.replace(alias, '');
+        }
+        return url;
     }
 }

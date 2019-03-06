@@ -12,11 +12,17 @@ class PrimaryMenu extends Component {
                     {menus.getItems().map(item => {
                         return (
                             <li key={item.getId()}>
-
-                                <Link to={item.getUrl()} onClick={onToggleMenu}>
-                                    <FontAwesomeIcon icon={item.getIcon()} />
-                                    {item.getTitle()}
-                                </Link>
+                                {item.isInternalLink() ? (
+                                    <Link to={item.getInternalUrl()} onClick={onToggleMenu}>
+                                        <FontAwesomeIcon icon={[item.getIconPrefix(), item.getIcon()]} />
+                                        {item.getTitle()}
+                                    </Link>
+                                ) : (
+                                    <a href={item.getUrl()}>
+                                        <FontAwesomeIcon icon={[item.getIconPrefix(), item.getIcon()]} />
+                                        {item.getTitle()}
+                                    </a>
+                                )}
                             </li>
                         );
                     })}

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/css/app.css';
+import 'highlight.js/styles/a11y-light.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
