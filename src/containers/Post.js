@@ -32,8 +32,7 @@ class Post extends Component {
                 <div className='animated fadeIn' key={posts.post.id}>
                     <h2>{posts.getTitle()}</h2>
                     <DateTime time={posts.getDate()}/>
-
-                    <div onClick={(e) => contentClickHandler(e, history)}>
+                    <div className="content"  onClick={(e) => contentClickHandler(e, history)}>
                         <Highlight innerHTML={true}>
                             {posts.getContent()}
                         </Highlight>

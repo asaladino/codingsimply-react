@@ -55,4 +55,14 @@ export default class MenuItemModel {
         }
         return url;
     }
+
+    isCurrentItem() {
+        return this.isInternalLink() && this.getInternalUrl() === window.location.pathname;
+    }
+
+    isActive() {
+        if(this.isCurrentItem()) {
+            return 'is-active';
+        }
+    }
 }

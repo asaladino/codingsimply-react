@@ -21,7 +21,7 @@ class Pages extends Component {
                 <div className='animated fadeIn' key={pages.page.id}>
                     <h2>{pages.getTitle()}</h2>
                     <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
-                    <div onClick={(e) => contentClickHandler(e, history)}
+                    <div className="content" onClick={(e) => contentClickHandler(e, history)}
                          dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
                 </div>
             );

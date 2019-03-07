@@ -21,6 +21,7 @@
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-router-ga": "^1.2.0",
     "react-scripts": "2.1.5",
     "react-slick": "^0.23.2",
     "redux": "^4.0.1",
