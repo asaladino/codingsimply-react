@@ -11,7 +11,7 @@ class PrimaryMenu extends Component {
                 <ul className="menu">
                     {menus.getItems().map(item => {
                         return (
-                            <li key={item.getId()}>
+                            <li key={item.getId()} className={item.isActive()}>
                                 {item.isInternalLink() ? (
                                     <Link to={item.getInternalUrl()} onClick={onToggleMenu}>
                                         <FontAwesomeIcon icon={[item.getIconPrefix(), item.getIcon()]} />

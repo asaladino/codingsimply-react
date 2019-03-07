@@ -83,7 +83,7 @@ class Project extends Component {
                             </div>
                             <div className="entry-content">
                                 <div className="row">
-                                    <div className="large-8 small-10 small-push-1 large-push-2 columns">
+                                    <div className="small-10 small-push-1 columns">
                                         <Slider {...settings}>
                                             {this.galleryImage(project.getScreenshot())}
                                             {this.galleryImage(project.getScreenshot2())}
@@ -93,9 +93,13 @@ class Project extends Component {
                                         </Slider>
                                     </div>
                                 </div>
-                                <Highlight innerHTML={true}>
-                                    {project.getContent()}
-                                </Highlight>
+                                <div className="row">
+                                    <div className="large-12 columns content">
+                                        <Highlight innerHTML={true}>
+                                            {project.getContent()}
+                                        </Highlight>
+                                    </div>
+                                </div>
                             </div>
                         </React.Fragment>
                     </main>

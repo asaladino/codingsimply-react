@@ -18,7 +18,6 @@ class Posts extends Component {
         let content = <div className='text-center'><Loading/></div>;
         if (posts.hasLoaded()) {
             content = (<React.Fragment>
-                <h2>Blog</h2>
                 <PostsList posts={posts}/>
             </React.Fragment>);
         }

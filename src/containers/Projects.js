@@ -18,7 +18,6 @@ class Projects extends Component {
             <div className="row">
                 <div className="large-8 large-push-2 columns">
                     <main className="site-main">
-                        <h2>Portfolio</h2>
                         <div className="row">
                             {projects.projects.map((project, index) => {
                                 return (

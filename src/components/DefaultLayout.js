@@ -22,10 +22,8 @@ class DefaultLayout extends Component {
                         <MobileSideMenu site={site} menus={menus} onToggleMenu={this.toggleMenu}/>
                     ) : ''}
                 </Menu>
-                <div className="off-canvas-content">
-                    <DefaultHeader site={site} menus={menus} onToggleMenu={this.toggleMenu}/>
-                    {children}
-                </div>
+                <DefaultHeader site={site} menus={menus} onToggleMenu={this.toggleMenu}/>
+                {children}
             </div>
         );
     }

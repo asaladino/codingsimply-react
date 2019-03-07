@@ -5,7 +5,10 @@ const main = {
         'codingsimply.com',
         'codingsimply.lh',
         'localhost:3000'
-    ]
+    ],
+    isDev: function() {
+        return window.location.host === 'localhost:3000';
+    }
 };
 
 export {
