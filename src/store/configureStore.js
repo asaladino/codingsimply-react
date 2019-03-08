@@ -3,9 +3,10 @@ import thunk from "redux-thunk";
 import {createLogger} from "redux-logger";
 import rootReducer from '../reducers/index';
 
-const logger = createLogger({collapsed: true});
-export default createStore(rootReducer,
-    applyMiddleware(
-        logger,
-        thunk
-    ));
+const middlewares = [thunk];
+if (process.env.NODE_ENV === `development`) {
+    const logger = createLogger({collapsed: true});
+    middlewares.push(logger);
+}
+
+export default createStore(rootReducer, applyMiddleware(...middlewares));
