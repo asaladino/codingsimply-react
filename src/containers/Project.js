@@ -19,12 +19,9 @@ class Project extends Component {
     galleryImage = (image) => {
         if (image) {
             return (
-                <figure className="orbit-figure">
-                    <img
-                        alt={image.alt}
-                        src={image.sizes.large}
-                    />
-                </figure>
+                <div>
+                    <img alt={image.alt} src={image.sizes.large} />
+                </div>
             );
         }
     };
@@ -35,7 +32,10 @@ class Project extends Component {
             infinite: true,
             speed: 500,
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            adaptiveHeight: false,
+            autoplay: false,
+            pauseOnFocus: true
         };
         const {projects, site, menus} = this.props;
         const {project} = projects;
@@ -83,7 +83,14 @@ class Project extends Component {
                             </div>
                             <div className="entry-content">
                                 <div className="row">
-                                    <div className="small-10 small-push-1 columns">
+                                    <div className="large-12 columns content">
+                                        <Highlight innerHTML={true}>
+                                            {project.getContent()}
+                                        </Highlight>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="small-10 small-push-1 columns" style={{maxHeight: '900px'}}>
                                         <Slider {...settings}>
                                             {this.galleryImage(project.getScreenshot())}
                                             {this.galleryImage(project.getScreenshot2())}
@@ -91,13 +98,6 @@ class Project extends Component {
                                             {this.galleryImage(project.getScreenshot4())}
                                             {this.galleryImage(project.getScreenshot5())}
                                         </Slider>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="large-12 columns content">
-                                        <Highlight innerHTML={true}>
-                                            {project.getContent()}
-                                        </Highlight>
                                     </div>
                                 </div>
                             </div>
