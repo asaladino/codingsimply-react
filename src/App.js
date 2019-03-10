@@ -4,8 +4,19 @@ import routes from "./constants/routes";
 import {BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {
+    faUserAlt,
+    faSearch,
+    faBlog,
+    faHome,
+    faBookmark,
+    faBars,
+    faSpinner,
+    faFilter,
+    faThLarge,
+    faList, faCaretLeft, faCaretRight
+} from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
 import Home from "./containers/Home";
@@ -24,7 +35,10 @@ import {main} from "./constants/main";
 class App extends Component {
     constructor(props) {
         super(props);
-        library.add(faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner, faGithub);
+        library.add(
+            faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner,
+            faGithub, faFilter, faThLarge, faList, faCaretLeft, faCaretRight
+        );
     }
 
     componentDidMount() {
@@ -45,7 +59,8 @@ class App extends Component {
                     <DefaultLayout site={site} menus={menus}>
                         <Route exact path={routes.HOME} component={Home}/>
                         <Route exact path={`${routes.POST}/:slug`} component={props => <Post {...props}/>}/>
-                        <Route exact path={`${routes.HOME}(\\d+/\\d+/\\d+)/:slug`} component={props => <Post {...props}/>}/>
+                        <Route exact path={`${routes.HOME}(\\d+/\\d+/\\d+)/:slug`}
+                               component={props => <Post {...props}/>}/>
                         <Route exact path={`${routes.POST}/`} component={Posts}/>
                         <Route exact path={`${routes.PROJECTS}/:slug`} component={props => <Project {...props}/>}/>
                         <Route exact path={`${routes.PROJECTS}/`} component={Projects}/>

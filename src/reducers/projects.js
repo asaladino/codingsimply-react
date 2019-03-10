@@ -19,6 +19,12 @@ const projects = (state = defaultState, action) => {
             project: action.data.project === null ? null : new ProjectModel(action.data.project)
         });
     }
+    if (action.type === actions.SET_PROJECT_DISPLAY) {
+        return new ProjectsModel({
+            ...state,
+            display: action.data
+        });
+    }
 
     return state;
 };

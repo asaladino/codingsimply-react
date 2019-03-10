@@ -17,6 +17,11 @@ const projects = {
                 data: null
             }));
     },
+
+    setDisplay(dispatch, display) {
+        dispatch({type: actions.SET_PROJECT_DISPLAY, data: display});
+    },
+
     getProject(dispatch, projects, slug) {
         dispatch({type: actions.GET_PROJECT});
         dispatch({type: actions.GOT_PROJECT, data: {projects: [], project: null}});

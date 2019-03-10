@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export default class ProjectModel {
 
     ID = 0;
@@ -5,6 +7,7 @@ export default class ProjectModel {
     post_name = '';
     post_content = '';
     promote = false;
+    randomKey = 0;
 
     meta = {
         git_url: null,
@@ -16,7 +19,12 @@ export default class ProjectModel {
     };
 
     constructor(state = {}) {
+        this.randomKey = _.random(0, 20);
         Object.assign(this, state);
+    }
+
+    getExcept() {
+        return this.post_excerpt;
     }
 
     getId() {
