@@ -1,7 +1,6 @@
 {
   "name": "codingsimply-react",
-  "version": "0.9.3",
-  "private": true,
+  "version": "0.9.4",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
@@ -34,7 +33,7 @@
     "build": "react-scripts build",
     "sass:watch": "node-sass -w src/assets/scss -o src/assets/css",
     "sass:build": "node-sass src/assets/scss -o src/assets/css --source-map true",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -48,9 +47,14 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "flow-bin": "^0.93.0",
     "flow-typed": "^2.5.1",
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "path": "^0.12.7",
+    "react-test-renderer": "^16.8.4"
   }
 }

@@ -1,7 +1,6 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import {connect} from "react-redux";
 import {projects as projectsAction} from '../actions/projects';
-import React from "react";
 import ProjectIcon from "../components/ProjectIcon";
 import Slider from "react-slick/lib";
 import Loading from "../components/Loading";
@@ -20,7 +19,7 @@ class Project extends Component {
         if (image) {
             return (
                 <div>
-                    <img alt={image.alt} src={image.sizes.large} />
+                    <img alt={image.alt} src={image.sizes.large}/>
                 </div>
             );
         }
@@ -55,53 +54,51 @@ class Project extends Component {
         return (
             <div className="row">
                 <div className="large-8 large-push-2 columns">
-                    <main className="site-main">
-                        <React.Fragment>
-                            <div className="row animated fadeIn">
-                                <div className="large-3 medium-4 small-6 columns">
-                                    <ProjectIcon initials={project.getInitials()}/>
-                                </div>
-                                <div className="large-9 medium-8 small-6 columns">
-                                    <header className="entry-header">
-                                        <h2 className="entry-title">{project.getTitle()}</h2>
-                                        <div className="row">
-                                            <div className="small-12 columns text-right">
-                                                {project.getGitUrl() ? (
-                                                    <a className="button secondary"
-                                                       href={project.getGitUrl()}
-                                                       rel="noopener noreferrer"
-                                                       target="_blank">
-                                                        <i className="fa fa-github"
-                                                           aria-hidden="true">{' '}</i>
-                                                        Fork on Github
-                                                    </a>
-                                                ) : ''}
-                                            </div>
+                    <main className="site-main project">
+                        <div className="row animated fadeIn">
+                            <div className="large-3 medium-4 small-6 columns">
+                                <ProjectIcon initials={project.getInitials()}/>
+                            </div>
+                            <div className="large-9 medium-8 small-6 columns">
+                                <header className="entry-header">
+                                    <h2 className="entry-title">{project.getTitle()}</h2>
+                                    <div className="row">
+                                        <div className="small-12 columns text-right">
+                                            {project.getGitUrl() ? (
+                                                <a className="button secondary"
+                                                   href={project.getGitUrl()}
+                                                   rel="noopener noreferrer"
+                                                   target="_blank">
+                                                    <i className="fa fa-github"
+                                                       aria-hidden="true">{' '}</i>
+                                                    Fork on Github
+                                                </a>
+                                            ) : ''}
                                         </div>
-                                    </header>
+                                    </div>
+                                </header>
+                            </div>
+                        </div>
+                        <div className="entry-content">
+                            <div className="row">
+                                <div className="large-12 columns content">
+                                    <Highlight innerHTML={true}>
+                                        {project.getContent()}
+                                    </Highlight>
                                 </div>
                             </div>
-                            <div className="entry-content">
-                                <div className="row">
-                                    <div className="large-12 columns content">
-                                        <Highlight innerHTML={true}>
-                                            {project.getContent()}
-                                        </Highlight>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="small-10 small-push-1 columns" style={{maxHeight: '900px'}}>
-                                        <Slider {...settings}>
-                                            {this.galleryImage(project.getScreenshot())}
-                                            {this.galleryImage(project.getScreenshot2())}
-                                            {this.galleryImage(project.getScreenshot3())}
-                                            {this.galleryImage(project.getScreenshot4())}
-                                            {this.galleryImage(project.getScreenshot5())}
-                                        </Slider>
-                                    </div>
+                            <div className="row">
+                                <div className="small-10 small-push-1 columns" style={{maxHeight: '900px'}}>
+                                    <Slider {...settings}>
+                                        {this.galleryImage(project.getScreenshot())}
+                                        {this.galleryImage(project.getScreenshot2())}
+                                        {this.galleryImage(project.getScreenshot3())}
+                                        {this.galleryImage(project.getScreenshot4())}
+                                        {this.galleryImage(project.getScreenshot5())}
+                                    </Slider>
                                 </div>
                             </div>
-                        </React.Fragment>
+                        </div>
                     </main>
                 </div>
             </div>

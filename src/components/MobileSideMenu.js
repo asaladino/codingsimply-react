@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PrimaryMenu from "./PrimaryMenu";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class MobileSideMenu extends Component {
 
@@ -12,7 +13,7 @@ class MobileSideMenu extends Component {
                         <ul className="menu">
                             <li>
                                 <button data-toggle="offCanvas" onClick={onToggleMenu}>
-                                    <i className="fa fa-bars">{' '}</i>
+                                    <FontAwesomeIcon icon={'bars'} />
                                 </button>
                             </li>
                             <li className="menu-text">
