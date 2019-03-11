@@ -18,10 +18,21 @@ class Home extends Component {
         }
     }
 
+    /**
+     * @todo Home page should just be a personal statement, couple lines about me and what I do.
+     */
     render() {
         const {posts, projects, site, menus} = this.props;
         if (!posts.hasLoaded() && !projects.hasLoaded() && !site.hasLoaded() && !menus.hasLoaded()) {
-            return <div className='text-center'><Loading/></div>;
+            return (
+                <div className="row">
+                    <div className="large-8 large-push-2 columns">
+                        <main className="site-main">
+                            <div className='text-center'><Loading/></div>
+                        </main>
+                    </div>
+                </div>
+            );
         }
 
         return (

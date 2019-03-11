@@ -33,6 +33,11 @@ class Projects extends Component {
         }
     };
 
+    /**
+     * @todo Use icon when available
+     * @todo square off generated icons.
+     * @returns {*}
+     */
     render() {
         const {projects, dispatch} = this.props;
         const {display} = projects;

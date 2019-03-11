@@ -26,6 +26,10 @@ class DefaultHeader extends Component {
         })
     };
 
+    /**
+     * @todo fix z-index issues.
+     * @returns {*}
+     */
     render() {
         const {site, menus} = this.props;
         return (
