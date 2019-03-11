@@ -6,6 +6,15 @@ $nav-bar-height: 54px;
   z-index: 200;
 }
 
+#main-menu {
+  width: 100%;
+  z-index: 300;
+}
+
+.mobile-menu {
+  z-index: 201;
+}
+
 .row {
   .slick-next:before, .slick-prev:before {
     color: #222;
@@ -16,8 +25,13 @@ $nav-bar-height: 54px;
   margin: 2rem 0;
 }
 
-.project-item a {
-  text-decoration: none;
+.site-main {
+  .project-item {
+    padding: 0;
+    a {
+      text-decoration: none;
+    }
+  }
 }
 
 .site-main {
@@ -34,7 +48,7 @@ $nav-bar-height: 54px;
   background: #fff;
 }
 
-#page .top-bar, #page .mobile-side {
+#page .top-bar, #page .mobile-menu {
   background-color: #fff;
 
   .menu {
@@ -50,6 +64,12 @@ $nav-bar-height: 54px;
   padding: 2rem 0 0 0;
 }
 
+.loading {
+  font-size: 32px;
+  z-index: 1000;
+}
+
+
 ////////////////////////////////////////////////
 // Projects
 ////////////////////////////////////////////////
@@ -64,6 +84,7 @@ $nav-bar-height: 54px;
 
 .project-item-details {
   padding-top: 1em;
+
   .label {
     margin-right: 0.5em;
   }
@@ -79,6 +100,7 @@ $nav-bar-height: 54px;
 
 .categories {
   margin: 0 0 3em 0;
+
   span.label {
     margin: .5em;
   }
