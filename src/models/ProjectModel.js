@@ -5,11 +5,13 @@ export default class ProjectModel {
     ID = 0;
     post_title = '';
     post_name = '';
+    post_excerpt = '';
     post_content = '';
     promote = false;
     randomKey = 0;
 
     meta = {
+        icon_url: null,
         git_url: null,
         screenshot_url: null,
         screenshot_url_2: null,
@@ -21,6 +23,10 @@ export default class ProjectModel {
     constructor(state = {}) {
         this.randomKey = _.random(0, 20);
         Object.assign(this, state);
+    }
+
+    hasIcon() {
+        return this.meta.icon_url !== false;
     }
 
     getExcept() {
@@ -45,6 +51,10 @@ export default class ProjectModel {
 
     getGitUrl() {
         return this.meta.git_url;
+    }
+
+    getIconUrl() {
+        return this.meta.icon_url.sizes.large;
     }
 
     getScreenshot() {

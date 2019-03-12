@@ -11,7 +11,7 @@ class PostsList extends Component {
                 <div className="large-12 columns post-entry">
                     <h3><Link to={posts.getUrl(post)}>{posts.getTitle(post)}</Link></h3>
                     <DateTime time={posts.getDate(post)}/>
-                    <p dangerouslySetInnerHTML={{__html: posts.getExcept(post)}}/>
+                    <div dangerouslySetInnerHTML={{__html: posts.getExcept(post)}}/>
                 </div>
             </div>
         );

@@ -5,10 +5,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 class PrimaryMenu extends Component {
 
     render() {
-        const {menus, onToggleMenu} = this.props;
+        const {menus, onToggleMenu, vertical} = this.props;
         return (
             <nav>
-                <ul className="menu">
+                <ul className={`menu ${vertical ? 'vertical' : ''}`}>
                     {menus.getItems().map(item => {
                         return (
                             <li key={item.getId()} className={item.isActive()}>

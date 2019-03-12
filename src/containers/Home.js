@@ -3,11 +3,12 @@ import {connect} from "react-redux";
 import {posts as postsAction} from '../actions/posts';
 import {projects as projectsAction} from '../actions/projects';
 import React from "react";
-import PostsList from "../components/PostsList";
-import ProjectSlideshow from "../components/ProjectSlideshow";
 import Loading from "../components/Loading";
+import FractureTitle from "../components/FractureTitle";
+import {Link} from "react-router-dom";
 
 class Home extends Component {
+
     componentDidMount() {
         const {posts, dispatch, projects} = this.props;
         if (!posts.hasLoaded()) {
@@ -21,22 +22,32 @@ class Home extends Component {
     render() {
         const {posts, projects, site, menus} = this.props;
         if (!posts.hasLoaded() && !projects.hasLoaded() && !site.hasLoaded() && !menus.hasLoaded()) {
-            return <div className='text-center'><Loading/></div>;
+            return (
+                <div className="row">
+                    <div className="large-8 large-push-2 columns">
+                        <main className="site-main">
+                            <div className='text-center'><Loading/></div>
+                        </main>
+                    </div>
+                </div>
+            );
         }
 
         return (
             <React.Fragment>
-                <div className="row slideshow-wrapper">
-                    {projects.hasLoaded() ? (
-                        <div className='shadow-offset animated slideInLeft'>
-                            <ProjectSlideshow projects={projects.getPromoted()}/>
-                        </div>
-                    ) : ''}
-                </div>
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
-                        <main className="site-main">
-                            <PostsList posts={posts}/>
+                        <main className="site-main home">
+                            <h1>
+                                <FractureTitle>
+                                    Hello everyone, my name is Adam.
+                                </FractureTitle>
+                            </h1>
+                            <h4 className="subheader">
+                                I am software developer. I like to find creative, simple solutions to problems.
+                                I use different languages and stacks as tools to build solutions to ideas.
+                                Checkout <Link to={`/projects/`}>my work</Link> and see if there is something you like.
+                            </h4>
                         </main>
                     </div>
                 </div>
