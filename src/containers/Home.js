@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import {posts as postsAction} from '../actions/posts';
 import {projects as projectsAction} from '../actions/projects';
 import React from "react";
-import PostsList from "../components/PostsList";
-import ProjectSlideshow from "../components/ProjectSlideshow";
 import Loading from "../components/Loading";
+import FractureTitle from "../components/FractureTitle";
 
 class Home extends Component {
+
     componentDidMount() {
         const {posts, dispatch, projects} = this.props;
         if (!posts.hasLoaded()) {
@@ -37,17 +37,19 @@ class Home extends Component {
 
         return (
             <React.Fragment>
-                <div className="row slideshow-wrapper">
-                    {projects.hasLoaded() ? (
-                        <div className='shadow-offset animated slideInLeft'>
-                            <ProjectSlideshow projects={projects.getPromoted()}/>
-                        </div>
-                    ) : ''}
-                </div>
                 <div className="row">
                     <div className="large-8 large-push-2 columns">
-                        <main className="site-main">
-                            <PostsList posts={posts}/>
+                        <main className="site-main home">
+                            <h1>
+                                <FractureTitle>
+                                    Hello everyone, my name is Adam.
+                                </FractureTitle>
+                            </h1>
+                            <h4 className="subheader">
+                                I am software developer. I like to find creative simple solutions to problems.
+                                I use different languages and stacks as tools to create solutions to ideas. Checkout
+                                my work and see if there is something you like.
+                            </h4>
                         </main>
                     </div>
                 </div>

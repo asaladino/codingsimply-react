@@ -1,19 +1,58 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import {connect} from "react-redux";
 import {projects as projectsAction} from '../actions/projects';
-import React from "react";
 import ProjectItem from "../components/ProjectItem";
 import _ from "lodash";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import ProjectItem2 from "../components/ProjectItem2";
 
 class Projects extends Component {
+
+    constructor(props) {
+        super(props);
+        const {projects} = props;
+        const {display} = projects;
+        if (display.listView) {
+            this.iconItemsRef = React.createRef();
+        }
+    }
+
     componentDidMount() {
         const {projects, dispatch} = this.props;
         if (!projects.hasLoaded()) {
             projectsAction.getProjects(dispatch);
         }
+        const {display} = projects;
+        if (display.listView) {
+            window.addEventListener('resize', this.resizeIcon);
+            this.resizeIcon();
+        }
     }
+
+    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+        const {projects} = this.props;
+        const {display} = projects;
+        if (display.listView) {
+            this.resizeIcon();
+        }
+    }
+
+    resizeIcon = () => {
+        if (this.iconItemsRef.current) {
+            const {childNodes} = this.iconItemsRef.current;
+            let max = 0;
+            childNodes.forEach($el => {
+                const height = $el.childNodes[0].offsetHeight;
+                if (max < height) {
+                    max = height;
+                }
+            });
+            console.log(max);
+            childNodes.forEach($el => {
+                $el.childNodes[0].style.height = max + 'px';
+            });
+        }
+    };
 
     onCategorySelected = (e) => {
         const {projects, dispatch} = this.props;
@@ -103,7 +142,7 @@ class Projects extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
+                            <div className="row" ref={this.iconItemsRef}>
                                 {projects.getProjects().map((project, index) => {
                                     return (
                                         <React.Fragment key={project.getId()}>

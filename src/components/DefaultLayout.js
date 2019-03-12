@@ -3,7 +3,6 @@ import DefaultHeader from "./DefaultHeader";
 
 class DefaultLayout extends Component {
 
-
     render() {
         const {site, menus, children} = this.props;
         return (

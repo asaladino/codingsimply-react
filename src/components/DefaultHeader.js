@@ -42,8 +42,8 @@ class DefaultHeader extends Component {
                                     <FontAwesomeIcon icon="bars"/>
                                 </button>
                             </li>
-                            <li className="menu-text">
-                                {site.name}
+                            <li>
+                                <h1>{site.name}</h1>
                             </li>
                             <li className="text-right show-for-small-only">
                                 {this.currentMenuItem(menus)}
@@ -62,7 +62,7 @@ class DefaultHeader extends Component {
                     </div>
                 </div>
                 <div className={`mobile-menu hide-for-large animated ${this.state.openMenu ? 'slideInDown' : 'slideOutUp'}`}>
-                    <PrimaryMenu menus={menus} vertical={true}/>
+                    <PrimaryMenu menus={menus} vertical={true} onToggleMenu={this.onToggleMenu}/>
                 </div>
             </header>
         );

@@ -1,5 +1,47 @@
 $nav-bar-height: 54px;
 
+
+html {
+
+  .home {
+    h1 {
+      font-size: 4rem;
+    }
+
+    .subheader {
+      margin-top: 4rem;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 900;
+  }
+
+  #main-menu h1 {
+    font-size: 1.5rem;
+  }
+
+  time {
+    font-style: italic;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, li, div, span {
+    font-family: 'Work Sans', sans-serif;
+  }
+
+  figure {
+    margin-bottom: 2em;
+
+    figcaption {
+      display: block;
+      text-align: center;
+      font-style: italic;
+    }
+  }
+}
+
 .site-header {
   position: fixed;
   width: 100%;
@@ -13,6 +55,8 @@ $nav-bar-height: 54px;
 
 .mobile-menu {
   z-index: 201;
+  position: absolute;
+  width: 100%;
 }
 
 .row {
@@ -28,20 +72,26 @@ $nav-bar-height: 54px;
 .site-main {
   .project-item {
     padding: 0;
+
     a {
       text-decoration: none;
     }
   }
 }
 
+
 .site-main {
   margin-top: $nav-bar-height;
 }
 
 .post-entry {
-  margin-top: 1rem;
-  padding: 2rem 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+
+  h3 {
+    a {
+      text-decoration: none;
+    }
+  }
 }
 
 .bm-menu {
@@ -76,7 +126,6 @@ $nav-bar-height: 54px;
 .project-icon {
   border: 0.6vw solid get-color('primary');
   width: 100%;
-  height: 50px;
   margin-bottom: 5px;
   color: $black;
   text-align: center;
