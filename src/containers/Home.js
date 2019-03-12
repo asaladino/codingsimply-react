@@ -5,6 +5,7 @@ import {projects as projectsAction} from '../actions/projects';
 import React from "react";
 import Loading from "../components/Loading";
 import FractureTitle from "../components/FractureTitle";
+import {Link} from "react-router-dom";
 
 class Home extends Component {
 
@@ -18,9 +19,6 @@ class Home extends Component {
         }
     }
 
-    /**
-     * @todo Home page should just be a personal statement, couple lines about me and what I do.
-     */
     render() {
         const {posts, projects, site, menus} = this.props;
         if (!posts.hasLoaded() && !projects.hasLoaded() && !site.hasLoaded() && !menus.hasLoaded()) {
@@ -46,9 +44,9 @@ class Home extends Component {
                                 </FractureTitle>
                             </h1>
                             <h4 className="subheader">
-                                I am software developer. I like to find creative simple solutions to problems.
-                                I use different languages and stacks as tools to create solutions to ideas. Checkout
-                                my work and see if there is something you like.
+                                I am software developer. I like to find creative, simple solutions to problems.
+                                I use different languages and stacks as tools to build solutions to ideas.
+                                Checkout <Link to={`/projects/`}>my work</Link> and see if there is something you like.
                             </h4>
                         </main>
                     </div>
