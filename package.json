@@ -1,6 +1,6 @@
 {
   "name": "codingsimply-react",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
@@ -14,7 +14,6 @@
     "moment": "^2.24.0",
     "postscribe": "^2.0.8",
     "react": "^16.8.2",
-    "react-burger-menu": "^2.6.5",
     "react-dom": "^16.8.2",
     "react-highlight": "^0.12.0",
     "react-redux": "^6.0.0",

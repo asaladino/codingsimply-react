@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import {loadInlineScripts} from "../components/helpers/InlineScriptHelper";
 import Highlight from "react-highlight";
+import FractureTitle from "../components/FractureTitle";
 
 class Post extends Component {
 
@@ -30,7 +31,7 @@ class Post extends Component {
         if (posts.hasPostLoaded() && posts.post !== null) {
             content = (
                 <div className='animated fadeIn' key={posts.post.id}>
-                    <h2>{posts.getTitle()}</h2>
+                    <h2><FractureTitle>{posts.getTitle()}</FractureTitle></h2>
                     <DateTime time={posts.getDate()}/>
                     <div className="content"  onClick={(e) => contentClickHandler(e, history)}>
                         <Highlight innerHTML={true}>

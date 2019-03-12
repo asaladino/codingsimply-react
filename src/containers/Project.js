@@ -5,6 +5,8 @@ import ProjectIcon from "../components/ProjectIcon";
 import Slider from "react-slick/lib";
 import Loading from "../components/Loading";
 import Highlight from "react-highlight";
+import FractureTitle from "../components/FractureTitle";
+import {Link} from "react-router-dom";
 
 class Project extends Component {
     componentDidMount() {
@@ -57,11 +59,19 @@ class Project extends Component {
                     <main className="site-main project">
                         <div className="row animated fadeIn">
                             <div className="large-3 medium-4 small-6 columns">
-                                <ProjectIcon initials={project.getInitials()}/>
+                                {project.hasIcon() ? (
+                                    <img alt={project.getTitle()} src={project.getIconUrl()}/>
+                                ) : (
+                                    <ProjectIcon initials={project.getInitials()}/>
+                                )}
                             </div>
                             <div className="large-9 medium-8 small-6 columns">
                                 <header className="entry-header">
-                                    <h2 className="entry-title">{project.getTitle()}</h2>
+                                    <h2 className="entry-title">
+                                        <FractureTitle>
+                                            {project.getTitle()}
+                                        </FractureTitle>
+                                    </h2>
                                     <div className="row">
                                         <div className="small-12 columns text-right">
                                             {project.getGitUrl() ? (

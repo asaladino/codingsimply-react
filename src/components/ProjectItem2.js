@@ -8,18 +8,18 @@ class ProjectItem2 extends Component {
         return (
             <div className="small-12 columns">
                 <div className="row">
-                    <div className="small-3 columns">
+                    <div className="large-3 medium-4 hide-for-small-only columns">
                         <div className="callout text-center no-border project-item">
                             <Link to={`/projects/${project.getSlug()}`}>
-                                {project.getScreenshot() ? (
-                                    <img alt={project.getScreenshot().alt} src={project.getScreenshot().sizes.medium} />
+                                {project.hasIcon() ? (
+                                    <img alt={project.getTitle()} src={project.getIconUrl()}/>
                                 ) : (
                                     <ProjectIcon initials={project.getInitials()}/>
                                 )}
                             </Link>
                         </div>
                     </div>
-                    <div className="small-9 columns project-item-details">
+                    <div className="large-9 medium-8 small-12 columns project-item-details">
                         <Link to={`/projects/${project.getSlug()}`}>
                             <h4>{project.getTitle()}</h4>
                         </Link>

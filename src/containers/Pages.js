@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {pages as pagesAction} from "../actions/pages";
 import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
+import FractureTitle from "../components/FractureTitle";
 
 class Pages extends Component {
     componentDidMount() {
@@ -19,9 +20,14 @@ class Pages extends Component {
         if (pages.hasLoaded()) {
             content = (
                 <div className='animated fadeIn' key={pages.page.id}>
-                    <h2>{pages.getTitle()}</h2>
+                    <h2>
+                        <FractureTitle>
+                            {pages.getTitle()}
+                        </FractureTitle>
+                    </h2>
                     <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
-                    <div className="content" onClick={(e) => contentClickHandler(e, history)}
+                    <div className="content"
+                         onClick={(e) => contentClickHandler(e, history)}
                          dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
                 </div>
             );
