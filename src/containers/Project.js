@@ -6,7 +6,6 @@ import Slider from "react-slick/lib";
 import Loading from "../components/Loading";
 import Highlight from "react-highlight";
 import FractureTitle from "../components/FractureTitle";
-import {Link} from "react-router-dom";
 
 class Project extends Component {
     componentDidMount() {
