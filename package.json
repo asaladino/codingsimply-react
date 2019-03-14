@@ -1,6 +1,6 @@
 {
   "name": "codingsimply-react",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
