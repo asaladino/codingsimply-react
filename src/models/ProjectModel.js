@@ -9,6 +9,7 @@ export default class ProjectModel {
     post_content = '';
     promote = false;
     randomKey = 0;
+    categories = [];
 
     meta = {
         icon_url: null,
