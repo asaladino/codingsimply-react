@@ -6,6 +6,7 @@ import Slider from "react-slick/lib";
 import Loading from "../components/Loading";
 import Highlight from "react-highlight";
 import FractureTitle from "../components/FractureTitle";
+import Categories from "../components/Categories";
 
 class Project extends Component {
     componentDidMount() {
@@ -65,27 +66,26 @@ class Project extends Component {
                                 )}
                             </div>
                             <div className="large-9 medium-8 small-6 columns">
-                                <header className="entry-header">
-                                    <h2 className="entry-title">
-                                        <FractureTitle>
-                                            {project.getTitle()}
-                                        </FractureTitle>
-                                    </h2>
-                                    <div className="row">
-                                        <div className="small-12 columns text-right">
-                                            {project.getGitUrl() ? (
-                                                <a className="button secondary"
-                                                   href={project.getGitUrl()}
-                                                   rel="noopener noreferrer"
-                                                   target="_blank">
-                                                    <i className="fa fa-github"
-                                                       aria-hidden="true">{' '}</i>
-                                                    Fork on Github
-                                                </a>
-                                            ) : ''}
-                                        </div>
-                                    </div>
-                                </header>
+                                <h2 className="entry-title">
+                                    <FractureTitle>
+                                        {project.getTitle()}
+                                    </FractureTitle>
+                                </h2>
+                                <div className="text-right">
+                                    {project.getGitUrl() ? (
+                                        <a className="button secondary"
+                                           href={project.getGitUrl()}
+                                           rel="noopener noreferrer"
+                                           target="_blank">
+                                            <i className="fa fa-github"
+                                               aria-hidden="true">{' '}</i>
+                                            Fork on Github
+                                        </a>
+                                    ) : ''}
+                                </div>
+                                <div className="project-item-details">
+                                    <Categories categories={project.categories}/>
+                                </div>
                             </div>
                         </div>
                         <div className="entry-content">

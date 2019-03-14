@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import ProjectIcon from "./ProjectIcon";
+import Categories from "./Categories";
 
 class ProjectItem2 extends Component {
     render() {
@@ -24,11 +25,7 @@ class ProjectItem2 extends Component {
                             <h4>{project.getTitle()}</h4>
                         </Link>
                         <p>
-                            {project.categories.map(c => {
-                                return (
-                                    <span key={c.term_id} className="label secondary">{c.name}</span>
-                                );
-                            })}
+                            <Categories categories={project.categories}/>
                         </p>
                         <p>
                             {project.getExcept()}
