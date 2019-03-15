@@ -1,6 +1,7 @@
 {
   "name": "codingsimply-react",
-  "version": "0.9.7",
+  "version": "0.9.8",
+  "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
