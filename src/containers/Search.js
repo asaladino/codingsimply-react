@@ -1,23 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {site as siteAction} from "../actions/site";
-import {menus as menuAction} from "../actions/menu";
 import {search as searchAction} from "../actions/search";
 import {search as actions} from "../constants/actions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
+import Loading from "../components/Loading";
 
 class Search extends Component {
-
-    componentDidMount() {
-        const {site, menus, dispatch} = this.props;
-        if (!site.hasLoaded()) {
-            siteAction.get(dispatch);
-        }
-        if (!menus.hasLoaded()) {
-            menuAction.getMenu(dispatch, 'primary');
-        }
-    }
 
     searchForTerm = () => {
         const {dispatch, search} = this.props;
@@ -37,6 +26,29 @@ class Search extends Component {
 
     render() {
         const {search} = this.props;
+        let content = <div className='text-center'><Loading/></div>;
+        if (search.hasLoaded()) {
+            content = (<React.Fragment>
+                {search.getResults().map((result, index) => {
+                    return (
+                        <div className={`row animated fadeIn post-entry`} style={{animationDelay: (index * 200) + 'ms'}} key={result.getId()}>
+                            <div className="large-10 columns">
+                                <h3><Link to={result.getUrlLink()}>{result.getTitle()}</Link></h3>
+                            </div>
+                            <div className="large-2 columns">
+                                <span className="label secondary">{result.getType()}</span>
+                            </div>
+                            <div className="large-12 columns">
+                                <p>
+                                    <Link to={result.getUrlLink()}>{result.getUrl()}</Link>
+                                </p>
+                            </div>
+                        </div>
+                    );
+                })}
+            </React.Fragment>);
+        }
+
         return (
             <div className="row">
                 <div className="large-8 large-push-2 columns">
@@ -55,23 +67,7 @@ class Search extends Component {
                                 </button>
                             </div>
                         </div>
-                        {search.getResults().map((result, index) => {
-                            return (
-                                <div className={`row animated fadeIn post-entry`} style={{animationDelay: (index * 200) + 'ms'}} key={result.getId()}>
-                                    <div className="large-10 columns">
-                                        <h3><Link to={result.getUrlLink()}>{result.getTitle()}</Link></h3>
-                                    </div>
-                                    <div className="large-2 columns">
-                                        <span className="label secondary">{result.getType()}</span>
-                                    </div>
-                                    <div className="large-12 columns">
-                                        <p>
-                                            <Link to={result.getUrlLink()}>{result.getUrl()}</Link>
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                        {content}
                     </main>
                 </div>
             </div>

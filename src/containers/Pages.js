@@ -6,6 +6,7 @@ import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import FractureTitle from "../components/FractureTitle";
 
 class Pages extends Component {
+
     componentDidMount() {
         const {pages, match, dispatch} = this.props;
         if (!pages.hasLoaded()) {
