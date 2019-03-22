@@ -1,14 +1,19 @@
 {
-  "short_name": "Coding Simply",
+  "short_name": "CodingSimply",
   "name": "Complexity is your undoing",
   "icons": [
     {
-      "src": "https://codingsimply.com/wp-content/themes/react-base/react-apps/codingsimply/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "https://codingsimply.com/wp-content/themes/react-base/react-apps/codingsimply/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://codingsimply.com/wp-content/themes/react-base/react-apps/codingsimply/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "start_url": "https://codingsimply.com/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
