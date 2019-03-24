@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import DateTime from "../components/DateTime";
 import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
-import {loadInlineScripts} from "../components/helpers/InlineScriptHelper";
+import {loadInlineScripts, contentImageLoading} from "../components/helpers/InlineScriptHelper";
 import Highlight from "react-highlight";
 import FractureTitle from "../components/FractureTitle";
 
@@ -22,6 +22,7 @@ class Post extends Component {
         const {posts} = this.props;
         if (posts.hasPostLoaded()) {
             loadInlineScripts();
+            contentImageLoading();
         }
     }
 
@@ -29,13 +30,14 @@ class Post extends Component {
         const {posts, history} = this.props;
         let content = <div className='text-center'><Loading/></div>;
         if (posts.hasPostLoaded() && posts.post !== null) {
+            const {post} = posts;
             content = (
-                <div className='animated fadeIn' key={posts.post.id}>
-                    <h2><FractureTitle>{posts.getTitle()}</FractureTitle></h2>
-                    <DateTime time={posts.getDate()}/>
+                <div className='animated fadeIn' key={post.getId()}>
+                    <h2><FractureTitle>{post.getTitle()}</FractureTitle></h2>
+                    <DateTime time={post.getDate()}/>
                     <div className="content"  onClick={(e) => contentClickHandler(e, history)}>
                         <Highlight innerHTML={true}>
-                            {posts.getContent()}
+                            {post.getContent()}
                         </Highlight>
                     </div>
                 </div>

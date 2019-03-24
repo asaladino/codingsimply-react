@@ -6,12 +6,12 @@ class PostsList extends Component {
 
     render() {
         const {posts} = this.props;
-        return posts.posts.map((post, index) =>
-            <div className={`row animated fadeIn`} style={{animationDelay: (index * 200) + 'ms'}} key={posts.getId(post)}>
+        return posts.getPosts().map((post, index) =>
+            <div className={`row animated fadeIn`} style={{animationDelay: (index * 200) + 'ms'}} key={post.getId()}>
                 <div className="large-12 columns post-entry">
-                    <h3><Link to={posts.getUrl(post)}>{posts.getTitle(post)}</Link></h3>
-                    <DateTime time={posts.getDate(post)}/>
-                    <div dangerouslySetInnerHTML={{__html: posts.getExcept(post)}}/>
+                    <h3><Link to={post.getUrl()}>{post.getTitle()}</Link></h3>
+                    <DateTime time={post.getDate()}/>
+                    <div dangerouslySetInnerHTML={{__html: post.getExcept()}}/>
                 </div>
             </div>
         );

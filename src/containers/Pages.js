@@ -4,6 +4,7 @@ import {pages as pagesAction} from "../actions/pages";
 import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import FractureTitle from "../components/FractureTitle";
+import {contentImageLoading, loadInlineScripts} from "../components/helpers/InlineScriptHelper";
 
 class Pages extends Component {
 
@@ -12,6 +13,14 @@ class Pages extends Component {
         if (!pages.hasLoaded()) {
             const {slug} = match.params;
             pagesAction.getPage(dispatch, `page-${slug}`);
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot): void {
+        const {pages} = this.props;
+        if (!pages.hasLoaded()) {
+            loadInlineScripts();
+            contentImageLoading();
         }
     }
 
@@ -26,7 +35,13 @@ class Pages extends Component {
                             {pages.getTitle()}
                         </FractureTitle>
                     </h2>
-                    <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
+                    <img alt={pages.getFeaturedMediaAlt()}
+                         src={pages.getFeaturedMediaLarge()}
+                         onLoad={(e) => {
+                             e.target.style = 'display: block;';
+                             e.target.className += ' animated zoomIn';
+                         }}
+                         style={{display: 'none'}}/>
                     <div className="content"
                          onClick={(e) => contentClickHandler(e, history)}
                          dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
