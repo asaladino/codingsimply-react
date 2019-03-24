@@ -11,6 +11,22 @@ const loadInlineScripts = () => {
     });
 };
 
+const contentImageLoading = () => {
+    console.log('looking');
+    document.querySelectorAll('#root img').forEach(img => {
+        console.log(img);
+        if(!img.hasAttribute('data-src')) {
+            img.setAttribute('data-src', img.getAttribute('src'));
+            img.style = 'display: none;';
+            img.onload = (e) => {
+                e.currentTarget.style = 'display: block;';
+                e.currentTarget.className += ' animated zoomIn';
+            };
+        }
+    });
+};
+
 export {
-    loadInlineScripts
+    loadInlineScripts,
+    contentImageLoading
 }

@@ -37,8 +37,9 @@ class DefaultHeader extends Component {
                 <div className="top-bar" id="main-menu">
                     <div className="top-bar-left">
                         <ul className="menu expanded">
-                            <li className='hide-for-large'>
-                                <button data-toggle="offCanvas" onClick={this.onToggleMenu}>
+                            <li className={`hide-for-large`}>
+                                <button id='hamburger' data-toggle="offCanvas" onClick={this.onToggleMenu}
+                                        className={`button ${this.state.openMenu ? '' : 'hollow'}`}>
                                     <FontAwesomeIcon icon="bars"/>
                                 </button>
                             </li>
@@ -61,7 +62,8 @@ class DefaultHeader extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={`mobile-menu hide-for-large animated ${this.state.openMenu ? 'slideInDown' : 'slideOutUp'}`}>
+                <div
+                    className={`mobile-menu hide-for-large animated fast ${this.state.openMenu ? 'bounceIn' : 'bounceOut'}`}>
                     <PrimaryMenu menus={menus} vertical={true} onToggleMenu={this.onToggleMenu}/>
                 </div>
             </header>

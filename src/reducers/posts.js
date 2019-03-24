@@ -1,5 +1,6 @@
 import {posts as actions} from "../constants/actions";
 import PostsModel from "../models/PostsModel";
+import PostModel from "../models/PostModel";
 
 const defaultState = new PostsModel();
 
@@ -15,7 +16,7 @@ const posts = (state = defaultState, action) => {
         return new PostsModel({
             ...state,
             didPostLoad: true,
-            post: action.data
+            post: new PostModel(action.data)
         });
     }
     if (action.type === actions.GET_POST) {
