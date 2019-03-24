@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import DateTime from "../components/DateTime";
 import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
-import {loadInlineScripts} from "../components/helpers/InlineScriptHelper";
+import {loadInlineScripts, contentImageLoading} from "../components/helpers/InlineScriptHelper";
 import Highlight from "react-highlight";
 import FractureTitle from "../components/FractureTitle";
 
@@ -22,6 +22,7 @@ class Post extends Component {
         const {posts} = this.props;
         if (posts.hasPostLoaded()) {
             loadInlineScripts();
+            contentImageLoading();
         }
     }
 

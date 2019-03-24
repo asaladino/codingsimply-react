@@ -4,6 +4,7 @@ import {pages as pagesAction} from "../actions/pages";
 import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import FractureTitle from "../components/FractureTitle";
+import {contentImageLoading, loadInlineScripts} from "../components/helpers/InlineScriptHelper";
 
 class Pages extends Component {
 
@@ -12,6 +13,14 @@ class Pages extends Component {
         if (!pages.hasLoaded()) {
             const {slug} = match.params;
             pagesAction.getPage(dispatch, `page-${slug}`);
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot): void {
+        const {pages} = this.props;
+        if (!pages.hasLoaded()) {
+            loadInlineScripts();
+            contentImageLoading();
         }
     }
 
