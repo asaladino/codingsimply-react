@@ -35,7 +35,13 @@ class Pages extends Component {
                             {pages.getTitle()}
                         </FractureTitle>
                     </h2>
-                    <img alt={pages.getFeaturedMediaAlt()} src={pages.getFeaturedMediaLarge()}/>
+                    <img alt={pages.getFeaturedMediaAlt()}
+                         src={pages.getFeaturedMediaLarge()}
+                         onLoad={(e) => {
+                             e.target.style = 'display: block;';
+                             e.target.className += ' animated zoomIn';
+                         }}
+                         style={{display: 'none'}}/>
                     <div className="content"
                          onClick={(e) => contentClickHandler(e, history)}
                          dangerouslySetInnerHTML={{__html: pages.getContent()}}/>

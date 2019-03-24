@@ -30,13 +30,14 @@ class Post extends Component {
         const {posts, history} = this.props;
         let content = <div className='text-center'><Loading/></div>;
         if (posts.hasPostLoaded() && posts.post !== null) {
+            const {post} = posts;
             content = (
-                <div className='animated fadeIn' key={posts.post.id}>
-                    <h2><FractureTitle>{posts.getTitle()}</FractureTitle></h2>
-                    <DateTime time={posts.getDate()}/>
+                <div className='animated fadeIn' key={post.getId()}>
+                    <h2><FractureTitle>{post.getTitle()}</FractureTitle></h2>
+                    <DateTime time={post.getDate()}/>
                     <div className="content"  onClick={(e) => contentClickHandler(e, history)}>
                         <Highlight innerHTML={true}>
-                            {posts.getContent()}
+                            {post.getContent()}
                         </Highlight>
                     </div>
                 </div>

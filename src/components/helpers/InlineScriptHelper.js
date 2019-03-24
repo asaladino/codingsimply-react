@@ -20,7 +20,7 @@ const contentImageLoading = () => {
             img.style = 'display: none;';
             img.onload = (e) => {
                 e.currentTarget.style = 'display: block;';
-                e.currentTarget.className += ' animated bounceIn';
+                e.currentTarget.className += ' animated zoomIn';
             };
         }
     });
