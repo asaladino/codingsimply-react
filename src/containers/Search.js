@@ -56,7 +56,7 @@ class Search extends Component {
                     <main className="site-main">
                         <div className="input-group">
                                 <span className="input-group-label">
-                                    <label for="search-field">search for...</label>
+                                    <label htmlFor="search-field">search for...</label>
                                 </span>
                             <input className="input-group-field"
                                    id='search-field'
