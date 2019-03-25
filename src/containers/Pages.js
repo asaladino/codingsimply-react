@@ -4,7 +4,7 @@ import {pages as pagesAction} from "../actions/pages";
 import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import FractureTitle from "../components/FractureTitle";
-import {contentImageLoading, loadInlineScripts} from "../components/helpers/InlineScriptHelper";
+import {contentImageLoading, loadInlineScripts, ImageLoadingAnimated} from "../components/helpers/InlineScriptHelper";
 
 class Pages extends Component {
 
@@ -28,23 +28,18 @@ class Pages extends Component {
         const {pages, history} = this.props;
         let content = <div className='text-center'><Loading/></div>;
         if (pages.hasLoaded()) {
+            const page = pages.getPage();
             content = (
-                <div className='animated fadeIn' key={pages.page.id}>
+                <div className='animated fadeIn' key={page.getId()}>
                     <h2>
-                        <FractureTitle>
-                            {pages.getTitle()}
-                        </FractureTitle>
+                        <FractureTitle>{page.getTitle()}</FractureTitle>
                     </h2>
-                    <img alt={pages.getFeaturedMediaAlt()}
-                         src={pages.getFeaturedMediaLarge()}
-                         onLoad={(e) => {
-                             e.target.style = 'display: block;';
-                             e.target.className += ' animated zoomIn';
-                         }}
-                         style={{display: 'none'}}/>
+                    <ImageLoadingAnimated>
+                        <img alt={page.getFeaturedMediaAlt()} src={page.getFeaturedMediaLarge()}/>
+                    </ImageLoadingAnimated>
                     <div className="content"
                          onClick={(e) => contentClickHandler(e, history)}
-                         dangerouslySetInnerHTML={{__html: pages.getContent()}}/>
+                         dangerouslySetInnerHTML={{__html: page.getContent()}}/>
                 </div>
             );
         }
