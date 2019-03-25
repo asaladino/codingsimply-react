@@ -86,15 +86,21 @@ class Projects extends Component {
                                         const displayUpdated = {...display, filter: !display.filter};
                                         projectsAction.setDisplay(dispatch, displayUpdated)
                                     })}>
-                                        <FontAwesomeIcon icon={'filter'}/>
+                                        <span className="show-for-sr">{display.filter ? 'Hide ' : 'Show '}Filter</span>
+                                        <span aria-hidden="true">
+                                            <FontAwesomeIcon icon={'filter'}/>
+                                        </span>
                                     </button>
                                     <button className="button" onClick={(() => {
                                         const displayUpdated = {...display, listView: !display.listView};
                                         projectsAction.setDisplay(dispatch, displayUpdated)
                                     })}>
-                                        {display.listView ?
-                                            <FontAwesomeIcon icon={'th-large'}/> :
-                                            <FontAwesomeIcon icon={'list'}/>}
+                                        <span className="show-for-sr">{display.filter ? 'Icon ' : 'List '}View</span>
+                                        <span aria-hidden="true">
+                                            {display.listView ?
+                                                <FontAwesomeIcon icon={'th-large'}/> :
+                                                <FontAwesomeIcon icon={'list'}/>}
+                                        </span>
                                     </button>
                                 </div>
                                 <div className={`medium-8 columns ${display.filter ? '' : 'hide'}`}>
@@ -125,14 +131,20 @@ class Projects extends Component {
                                                     const displayUpdated = {...display, moreCategories: false};
                                                     projectsAction.setDisplay(dispatch, displayUpdated)
                                                 })}>
-                                            <FontAwesomeIcon icon={'caret-left'}/>
+                                            <span className="show-for-sr">Less Categories</span>
+                                            <span aria-hidden="true">
+                                                <FontAwesomeIcon icon={'caret-left'}/>
+                                            </span>
                                         </button>
                                         <button className={`button secondary ${display.moreCategories ? 'hide' : ''}`}
                                                 onClick={(() => {
                                                     const displayUpdated = {...display, moreCategories: true};
                                                     projectsAction.setDisplay(dispatch, displayUpdated)
                                                 })}>
-                                            <FontAwesomeIcon icon={'caret-right'}/>
+                                            <span className="show-for-sr">More Categories</span>
+                                            <span aria-hidden="true">
+                                                <FontAwesomeIcon icon={'caret-right'}/>
+                                            </span>
                                         </button>
                                     </div>
                                 </div>

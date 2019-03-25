@@ -14,7 +14,7 @@ class Search extends Component {
     };
 
     searchForTermWithEnter = (e) => {
-        if(e.key === 'Enter') {
+        if (e.key === 'Enter') {
             this.searchForTerm();
         }
     };
@@ -31,7 +31,8 @@ class Search extends Component {
             content = (<React.Fragment>
                 {search.getResults().map((result, index) => {
                     return (
-                        <div className={`row animated fadeIn post-entry`} style={{animationDelay: (index * 200) + 'ms'}} key={result.getId()}>
+                        <div className={`row animated fadeIn post-entry`} style={{animationDelay: (index * 200) + 'ms'}}
+                             key={result.getId()}>
                             <div className="large-10 columns">
                                 <h3><Link to={result.getUrlLink()}>{result.getTitle()}</Link></h3>
                             </div>
@@ -54,16 +55,22 @@ class Search extends Component {
                 <div className="large-8 large-push-2 columns">
                     <main className="site-main">
                         <div className="input-group">
+                                <span className="input-group-label">
+                                    <label for="search-field">search for...</label>
+                                </span>
                             <input className="input-group-field"
+                                   id='search-field'
                                    type='text'
-                                   placeholder='search...'
                                    value={search.term}
                                    onKeyPress={this.searchForTermWithEnter}
                                    onChange={this.setTerm}
                                    autoFocus/>
                             <div className="input-group-button">
                                 <button className="button" onClick={this.searchForTerm}>
-                                    <FontAwesomeIcon icon="search"/>
+                                    <span className="show-for-sr">Start Search</span>
+                                    <span aria-hidden="true">
+                                            <FontAwesomeIcon icon="search"/>
+                                        </span>
                                 </button>
                             </div>
                         </div>

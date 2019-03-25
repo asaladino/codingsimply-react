@@ -1,4 +1,4 @@
-class PostsModel {
+class PostModel {
     id = 0;
     title = {rendered: ''};
     date = '';
@@ -42,4 +42,4 @@ class PostsModel {
     }
 }
 
-export default PostsModel;
+export default PostModel;
