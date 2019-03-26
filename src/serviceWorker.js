@@ -23,8 +23,7 @@ const isLocalhost = Boolean(
 );
 
 export function register(config) {
-    console.log(process.env.NODE_ENV);
-    if (process.env.NODE_ENV === 'development' && 'serviceWorker' in navigator) {
+    if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
         // The URL constructor is available in all browsers that support SW.
         const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
         if (publicUrl.origin !== window.location.origin) {
@@ -36,7 +35,6 @@ export function register(config) {
 
         window.addEventListener('load', () => {
             const swUrl = isLocalhost ? `/service-worker.js` : `https://codingsimply.com/wp-content/themes/react-base/react-apps/codingsimply/service-worker.js`;
-            console.log(swUrl);
             if (isLocalhost) {
                 // This is running on localhost. Let's check if a service worker still exists or not.
                 checkValidServiceWorker(swUrl, config);
@@ -55,7 +53,7 @@ export function register(config) {
 
 function registerValidSW(swUrl, config) {
     navigator.serviceWorker
-        .register(swUrl, {scope: '/'})
+        .register(swUrl)
         .then(registration => {
             registration.onupdatefound = () => {
                 const installingWorker = registration.installing;
