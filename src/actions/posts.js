@@ -19,7 +19,6 @@ const posts = {
     },
     getPost(dispatch, slug) {
         dispatch({type: actions.GET_POST});
-        dispatch({type: actions.GOT_POST, data: null});
         axios.get(`${main.baseUrl}/wp-json/wp/v2/posts?slug=${slug}`)
             .then((response) => dispatch({
                 type: actions.GOT_POST,

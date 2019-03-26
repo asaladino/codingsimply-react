@@ -47,7 +47,6 @@ class Projects extends Component {
                     max = height;
                 }
             });
-            console.log(max);
             childNodes.forEach($el => {
                 $el.childNodes[0].style.height = max + 'px';
             });
@@ -76,102 +75,85 @@ class Projects extends Component {
         const {projects, dispatch} = this.props;
         const {display} = projects;
         return (
-            <React.Fragment>
-                <div className="row">
-                    <div className="large-8 large-push-2 columns">
-                        <main className="site-main">
-                            <div className="row">
-                                <div className="medium-4 columns">
-                                    <button className="button" onClick={(() => {
-                                        const displayUpdated = {...display, filter: !display.filter};
-                                        projectsAction.setDisplay(dispatch, displayUpdated)
-                                    })}>
-                                        <span className="show-for-sr">{display.filter ? 'Hide ' : 'Show '}Filter</span>
+            <div className="row">
+                <div className="large-8 large-push-2 columns">
+                    <main className="site-main">
+                        <div className="row">
+                            <div className="medium-4 columns">
+                                <button className="button" onClick={() => {
+                                    const displayUpdated = {...display, filter: !display.filter};
+                                    projectsAction.setDisplay(dispatch, displayUpdated)
+                                }}>
+                                    <span className="show-for-sr">{display.filter ? 'Hide ' : 'Show '}Filter</span>
+                                    <span aria-hidden="true">
+                                        <FontAwesomeIcon icon={'filter'}/>
+                                    </span>
+                                </button>
+                                <button className="button" onClick={() => {
+                                    const displayUpdated = {...display, listView: !display.listView};
+                                    projectsAction.setDisplay(dispatch, displayUpdated)
+                                }}>
+                                    <span className="show-for-sr">{display.filter ? 'Icon ' : 'List '}View</span>
+                                    <span aria-hidden="true">
+                                        {display.listView ?
+                                            <FontAwesomeIcon icon={'th-large'}/> : <FontAwesomeIcon icon={'list'}/>}
+                                    </span>
+                                </button>
+                            </div>
+                            <div className={`medium-8 columns ${display.filter ? '' : 'hide'}`}>
+                                <input type="text" value={display.term} name="filter" placeholder="filter..."
+                                       onChange={((e) => {
+                                           const displayUpdated = {...display, term: e.target.value};
+                                           projectsAction.setDisplay(dispatch, displayUpdated)
+                                       })}/>
+                            </div>
+                        </div>
+                        <div className={`row ${display.filter ? '' : 'hide'}`}>
+                            <div className="large-12 columns">
+                                <div className="categories">
+                                    {projects.getCategories().map(c =>
+                                        <span key={c.term_id} className="label secondary animated fadeIn">
+                                            <input id={c.name}
+                                                   value={c.name}
+                                                   defaultChecked={_.indexOf(display.selected, c.name) > -1}
+                                                   type="checkbox"
+                                                   onChange={this.onCategorySelected}/>
+                                            <label htmlFor={c.name}>{c.name}</label>
+                                        </span>
+                                    )}
+                                    <button className={`button secondary ${!display.moreCategories ? 'hide' : ''}`}
+                                            onClick={(() => {
+                                                const displayUpdated = {...display, moreCategories: false};
+                                                projectsAction.setDisplay(dispatch, displayUpdated)
+                                            })}>
+                                        <span className="show-for-sr">Less Categories</span>
                                         <span aria-hidden="true">
-                                            <FontAwesomeIcon icon={'filter'}/>
+                                            <FontAwesomeIcon icon={'caret-left'}/>
                                         </span>
                                     </button>
-                                    <button className="button" onClick={(() => {
-                                        const displayUpdated = {...display, listView: !display.listView};
-                                        projectsAction.setDisplay(dispatch, displayUpdated)
-                                    })}>
-                                        <span className="show-for-sr">{display.filter ? 'Icon ' : 'List '}View</span>
+                                    <button className={`button secondary ${display.moreCategories ? 'hide' : ''}`}
+                                            onClick={(() => {
+                                                const displayUpdated = {...display, moreCategories: true};
+                                                projectsAction.setDisplay(dispatch, displayUpdated)
+                                            })}>
+                                        <span className="show-for-sr">More Categories</span>
                                         <span aria-hidden="true">
-                                            {display.listView ?
-                                                <FontAwesomeIcon icon={'th-large'}/> :
-                                                <FontAwesomeIcon icon={'list'}/>}
+                                            <FontAwesomeIcon icon={'caret-right'}/>
                                         </span>
                                     </button>
                                 </div>
-                                <div className={`medium-8 columns ${display.filter ? '' : 'hide'}`}>
-                                    <input type="text" value={display.term} name="filter" placeholder="filter..."
-                                           onChange={((e) => {
-                                               const displayUpdated = {...display, term: e.target.value};
-                                               projectsAction.setDisplay(dispatch, displayUpdated)
-                                           })}/>
-                                </div>
                             </div>
-                            <div className={`row ${display.filter ? '' : 'hide'}`}>
-                                <div className="large-12 columns">
-                                    <div className="categories">
-                                        {projects.getCategories().map(c => {
-                                            return (
-                                                <span key={c.term_id} className="label secondary animated fadeIn">
-                                                    <input id={c.name}
-                                                           value={c.name}
-                                                           defaultChecked={_.indexOf(display.selected, c.name) > -1}
-                                                           type="checkbox"
-                                                           onChange={this.onCategorySelected}/>
-                                                    <label htmlFor={c.name}>{c.name}</label>
-                                                </span>
-                                            );
-                                        })}
-                                        <button className={`button secondary ${!display.moreCategories ? 'hide' : ''}`}
-                                                onClick={(() => {
-                                                    const displayUpdated = {...display, moreCategories: false};
-                                                    projectsAction.setDisplay(dispatch, displayUpdated)
-                                                })}>
-                                            <span className="show-for-sr">Less Categories</span>
-                                            <span aria-hidden="true">
-                                                <FontAwesomeIcon icon={'caret-left'}/>
-                                            </span>
-                                        </button>
-                                        <button className={`button secondary ${display.moreCategories ? 'hide' : ''}`}
-                                                onClick={(() => {
-                                                    const displayUpdated = {...display, moreCategories: true};
-                                                    projectsAction.setDisplay(dispatch, displayUpdated)
-                                                })}>
-                                            <span className="show-for-sr">More Categories</span>
-                                            <span aria-hidden="true">
-                                                <FontAwesomeIcon icon={'caret-right'}/>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row" ref={this.iconItemsRef}>
-                                {projects.getProjects().map((project, index) => {
-                                    return (
-                                        <React.Fragment key={project.getId()}>
-                                            {display.listView ? (
-                                                <div className={`animated zoomIn`}
-                                                     style={{animationDelay: _.random(200, 600) + 'ms'}}>
-                                                    <ProjectItem project={project}/>
-                                                </div>
-                                            ) : (
-                                                <div className={`animated fadeIn`}
-                                                     style={{animationDelay: (index * 200) + 'ms'}}>
-                                                    <ProjectItem2 project={project}/>
-                                                </div>
-                                            )}
-                                        </React.Fragment>
-                                    );
-                                })}
-                            </div>
-                        </main>
-                    </div>
+                        </div>
+                        <div className="row" ref={this.iconItemsRef}>
+                            {projects.getProjects().map((project, index) =>
+                                display.listView ?
+                                    <ProjectItem project={project} key={project.getId()}/> :
+                                    <ProjectItem2 project={project} index={index} key={project.getId()}/>
+                            )}
+                        </div>
+                    </main>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }
