@@ -16,9 +16,9 @@ class Post extends Component {
         if (slug) {
             postsAction.getPost(dispatch, slug);
         }
-    };
+    }
 
-    componentDidUpdate(prevProps, prevState, snapshot): void {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         const {posts} = this.props;
         if (posts.hasPostLoaded()) {
             loadInlineScripts();
@@ -29,13 +29,13 @@ class Post extends Component {
     render() {
         const {posts, history} = this.props;
         let content = <div className='text-center'><Loading/></div>;
-        if (posts.hasPostLoaded() && posts.post !== null) {
+        if (posts.hasPostLoaded()) {
             const {post} = posts;
             content = (
                 <div className='animated fadeIn' key={post.getId()}>
                     <h2><FractureTitle>{post.getTitle()}</FractureTitle></h2>
                     <DateTime time={post.getDate()}/>
-                    <div className="content"  onClick={(e) => contentClickHandler(e, history)}>
+                    <div className="content" onClick={(e) => contentClickHandler(e, history)}>
                         <Highlight innerHTML={true}>
                             {post.getContent()}
                         </Highlight>
