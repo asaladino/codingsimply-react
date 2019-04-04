@@ -34,24 +34,22 @@ class Home extends Component {
         }
 
         return (
-            <React.Fragment>
-                <div className="row">
-                    <div className="large-8 large-push-2 columns">
-                        <main className="site-main home">
-                            <h1>
-                                <FractureTitle>
-                                    Hello everyone, my name is Adam.
-                                </FractureTitle>
-                            </h1>
-                            <h4 className="subheader">
-                                I am software developer. I like to find creative, simple solutions to problems.
-                                I use different languages and stacks as tools to build solutions to ideas.
-                                Checkout <Link to={`/projects/`}>my work</Link> and see if there is something you like.
-                            </h4>
-                        </main>
-                    </div>
+            <div className="row">
+                <div className="large-8 large-push-2 columns">
+                    <main className="site-main home">
+                        <h1>
+                            <FractureTitle>
+                                Hello everyone, my name is Adam.
+                            </FractureTitle>
+                        </h1>
+                        <h4 className="subheader">
+                            I am software developer. I like to find creative, simple solutions to problems.
+                            I use different languages and stacks as tools to build solutions to ideas.
+                            Checkout <Link to={`/projects/`}>my work</Link> and see if there is something you like.
+                        </h4>
+                    </main>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }

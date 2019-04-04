@@ -18,6 +18,10 @@ export default class PostsModel {
         return this.didLoad;
     }
 
+    isPostNotFound() {
+        return this.didPostLoad && (this.post === null || this.post.id === 0);
+    }
+
     hasPostLoaded() {
         return this.didPostLoad && this.post !== null && this.post.id !== 0;
     }

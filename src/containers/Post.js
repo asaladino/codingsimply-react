@@ -7,6 +7,7 @@ import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import {loadInlineScripts, contentImageLoading} from "../components/helpers/InlineScriptHelper";
 import Highlight from "react-highlight";
 import FractureTitle from "../components/FractureTitle";
+import NotFound from "./NotFound";
 
 class Post extends Component {
 
@@ -28,6 +29,11 @@ class Post extends Component {
 
     render() {
         const {posts, history} = this.props;
+
+        if (posts.isPostNotFound()) {
+            return <NotFound/>;
+        }
+
         let content = <div className='text-center'><Loading/></div>;
         if (posts.hasPostLoaded()) {
             const {post} = posts;

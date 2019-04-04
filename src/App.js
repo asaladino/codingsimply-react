@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router';
+import {Route, Switch} from 'react-router';
 import routes from "./constants/routes";
 import {BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
@@ -31,6 +31,7 @@ import {menus as menuAction} from "./actions/menu";
 import DefaultLayout from "./components/DefaultLayout";
 import Analytics from 'react-router-ga';
 import {main} from "./constants/main";
+import NotFound from "./containers/NotFound";
 
 class App extends Component {
     constructor(props) {
@@ -57,16 +58,19 @@ class App extends Component {
             <BrowserRouter>
                 <Analytics id={main.isDev() ? `UA-111111111-1` : `UA-22975683-1`}>
                     <DefaultLayout site={site} menus={menus}>
-                        <Route exact path={routes.HOME} component={Home}/>
-                        <Route exact path={`${routes.POST}/:slug`} component={props => <Post {...props}/>}/>
-                        <Route exact path={`${routes.HOME}(\\d+/\\d+/\\d+)/:slug`}
-                               component={props => <Post {...props}/>}/>
-                        <Route exact path={`${routes.POST}/`} component={Posts}/>
-                        <Route exact path={`${routes.PROJECTS}/:slug`} component={props => <Project {...props}/>}/>
-                        <Route exact path={`${routes.PROJECTS}/`} component={Projects}/>
-                        <Route exact path={`${routes.HOME}page-:slug/`} component={props => <Pages {...props}/>}/>
-                        <Route exact path={`${routes.SEARCH}`} component={props => <Search {...props}/>}/>
-                        <Route exact path={`${routes.SEARCH}/:term`} component={props => <Search {...props}/>}/>
+                        <Switch>
+                            <Route exact path={routes.HOME} component={Home}/>
+                            <Route exact path={`${routes.POST}/:slug`} component={props => <Post {...props}/>}/>
+                            <Route exact path={`${routes.HOME}(\\d+/\\d+/\\d+)/:slug`}
+                                   component={props => <Post {...props}/>}/>
+                            <Route exact path={`${routes.POST}/`} component={Posts}/>
+                            <Route exact path={`${routes.PROJECTS}/:slug`} component={props => <Project {...props}/>}/>
+                            <Route exact path={`${routes.PROJECTS}/`} component={Projects}/>
+                            <Route exact path={`${routes.HOME}page-:slug/`} component={props => <Pages {...props}/>}/>
+                            <Route exact path={`${routes.SEARCH}`} component={props => <Search {...props}/>}/>
+                            <Route exact path={`${routes.SEARCH}/:term`} component={props => <Search {...props}/>}/>
+                            <Route component={NotFound}/>
+                        </Switch>
                     </DefaultLayout>
                 </Analytics>
             </BrowserRouter>

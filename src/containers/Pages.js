@@ -5,6 +5,7 @@ import Loading from "../components/Loading";
 import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import FractureTitle from "../components/FractureTitle";
 import {contentImageLoading, loadInlineScripts, ImageLoadingAnimated} from "../components/helpers/InlineScriptHelper";
+import NotFound from "./NotFound";
 
 class Pages extends Component {
 
@@ -16,8 +17,12 @@ class Pages extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot): void {
-        const {pages} = this.props;
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {pages, match, dispatch} = this.props;
+        const {slug} = match.params;
+        if (pages.slug !== `page-${slug}`) {
+            pagesAction.getPage(dispatch, `page-${slug}`);
+        }
         if (!pages.hasLoaded()) {
             loadInlineScripts();
             contentImageLoading();
@@ -26,6 +31,11 @@ class Pages extends Component {
 
     render() {
         const {pages, history} = this.props;
+
+        if (!pages.pageFound && pages.hasLoaded()) {
+            return <NotFound/>;
+        }
+
         let content = <div className='text-center'><Loading/></div>;
         if (pages.hasLoaded()) {
             const page = pages.getPage();

@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 import Highlight from "react-highlight";
 import FractureTitle from "../components/FractureTitle";
 import Categories from "../components/Categories";
+import NotFound from "./NotFound";
 
 class Project extends Component {
     componentDidMount() {
@@ -19,11 +20,7 @@ class Project extends Component {
 
     galleryImage = (image) => {
         if (image) {
-            return (
-                <div>
-                    <img alt={image.alt} src={image.sizes.large}/>
-                </div>
-            );
+            return <div><img alt={image.alt} src={image.sizes.large}/></div>;
         }
     };
 
@@ -40,6 +37,10 @@ class Project extends Component {
         };
         const {projects, site, menus} = this.props;
         const {project} = projects;
+
+        if (project === null && projects.hasLoaded()) {
+            return <NotFound/>;
+        }
 
         if (project === null || (!projects.hasLoaded() && !site.hasLoaded() && !menus.hasLoaded())) {
             return (
