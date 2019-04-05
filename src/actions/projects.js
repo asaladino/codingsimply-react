@@ -24,7 +24,6 @@ const projects = {
 
     getProject(dispatch, projects, slug) {
         dispatch({type: actions.GET_PROJECT});
-        dispatch({type: actions.GOT_PROJECT, data: {projects: [], project: null}});
         if (projects.hasLoaded()) {
             const project = projects.projects.filter(project => project.post_name === slug);
             dispatch({

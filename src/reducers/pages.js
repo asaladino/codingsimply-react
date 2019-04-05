@@ -15,7 +15,7 @@ const pages = (state = defaultState, action) => {
         return new PagesModel({
             ...state,
             didLoad: true,
-            page: action.data
+            ...action.data
         });
     }
     if (action.type === actions.GET_FEATURED_MEDIA) {

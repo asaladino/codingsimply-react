@@ -5,6 +5,8 @@ export default class PagesModel {
     page = null;
     featuredMedia = null;
     didLoad = false;
+    slug = null;
+    pageFound = true;
 
     constructor(state = {}) {
         Object.assign(this, state);
