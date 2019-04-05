@@ -44,12 +44,14 @@ class Pages extends Component {
                     <h2>
                         <FractureTitle>{page.getTitle()}</FractureTitle>
                     </h2>
-                    <ImageLoadingAnimated>
-                        <img alt={page.getFeaturedMediaAlt()} src={page.getFeaturedMediaLarge()}/>
-                    </ImageLoadingAnimated>
-                    <div className="content"
-                         onClick={(e) => contentClickHandler(e, history)}
-                         dangerouslySetInnerHTML={{__html: page.getContent()}}/>
+                    <div style={{clear: 'both'}}>
+                        <ImageLoadingAnimated>
+                            <img alt={page.getFeaturedMediaAlt()} src={page.getFeaturedMediaLarge()}/>
+                        </ImageLoadingAnimated>
+                        <div className="content"
+                             onClick={(e) => contentClickHandler(e, history)}
+                             dangerouslySetInnerHTML={{__html: page.getContent()}}/>
+                    </div>
                 </div>
             );
         }

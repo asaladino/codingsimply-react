@@ -38,11 +38,11 @@ class Home extends Component {
                 <div className="large-8 large-push-2 columns">
                     <main className="site-main home">
                         <h1>
-                            <FractureTitle>
+                            <FractureTitle split={'word'}>
                                 Hello everyone, my name is Adam.
                             </FractureTitle>
                         </h1>
-                        <h4 className="subheader">
+                        <h4 className="subheader" style={{clear: 'both'}}>
                             I am software developer. I like to find creative, simple solutions to problems.
                             I use different languages and stacks as tools to build solutions to ideas.
                             Checkout <Link to={`/projects/`}>my work</Link> and see if there is something you like.

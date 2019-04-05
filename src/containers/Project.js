@@ -68,11 +68,9 @@ class Project extends Component {
                             </div>
                             <div className="large-9 medium-8 small-6 columns">
                                 <h2 className="entry-title">
-                                    <FractureTitle>
-                                        {project.getTitle()}
-                                    </FractureTitle>
+                                    <FractureTitle split={'word'}>{project.getTitle()}</FractureTitle>
                                 </h2>
-                                <div className="text-right">
+                                <div className="text-right" style={{clear: 'both'}}>
                                     {project.getGitUrl() ? (
                                         <a className="button secondary"
                                            href={project.getGitUrl()}

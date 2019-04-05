@@ -39,12 +39,14 @@ class Post extends Component {
             const {post} = posts;
             content = (
                 <div className='animated fadeIn' key={post.getId()}>
-                    <h2><FractureTitle>{post.getTitle()}</FractureTitle></h2>
-                    <DateTime time={post.getDate()}/>
-                    <div className="content" onClick={(e) => contentClickHandler(e, history)}>
-                        <Highlight innerHTML={true}>
-                            {post.getContent()}
-                        </Highlight>
+                    <h2><FractureTitle split={'word'}>{post.getTitle()}</FractureTitle></h2>
+                    <div style={{clear: 'both'}}>
+                        <DateTime time={post.getDate()}/>
+                        <div className="content" onClick={(e) => contentClickHandler(e, history)}>
+                            <Highlight innerHTML={true}>
+                                {post.getContent()}
+                            </Highlight>
+                        </div>
                     </div>
                 </div>
             );
