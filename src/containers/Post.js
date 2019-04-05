@@ -7,6 +7,7 @@ import {contentClickHandler} from "../components/helpers/HtmlRouteHelper";
 import {loadInlineScripts, contentImageLoading} from "../components/helpers/InlineScriptHelper";
 import Highlight from "react-highlight";
 import FractureTitle from "../components/FractureTitle";
+import NotFound from "./NotFound";
 
 class Post extends Component {
 
@@ -28,17 +29,24 @@ class Post extends Component {
 
     render() {
         const {posts, history} = this.props;
+
+        if (posts.isPostNotFound()) {
+            return <NotFound/>;
+        }
+
         let content = <div className='text-center'><Loading/></div>;
         if (posts.hasPostLoaded()) {
             const {post} = posts;
             content = (
                 <div className='animated fadeIn' key={post.getId()}>
-                    <h2><FractureTitle>{post.getTitle()}</FractureTitle></h2>
-                    <DateTime time={post.getDate()}/>
-                    <div className="content" onClick={(e) => contentClickHandler(e, history)}>
-                        <Highlight innerHTML={true}>
-                            {post.getContent()}
-                        </Highlight>
+                    <h2><FractureTitle split={'word'}>{post.getTitle()}</FractureTitle></h2>
+                    <div style={{clear: 'both'}}>
+                        <DateTime time={post.getDate()}/>
+                        <div className="content" onClick={(e) => contentClickHandler(e, history)}>
+                            <Highlight innerHTML={true}>
+                                {post.getContent()}
+                            </Highlight>
+                        </div>
                     </div>
                 </div>
             );

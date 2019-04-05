@@ -21,20 +21,20 @@ const pages = {
         dispatch({type: actions.GET_PAGE});
         axios.get(`${main.baseUrl}/wp-json/wp/v2/pages/?slug=${slug}`)
             .then((response) => {
-                const page = response.data[0];
-                const {featured_media} = page;
-                this.getFeaturedMedia(dispatch, featured_media);
-                return dispatch({
+                    const page = response.data[0];
+                    const {featured_media} = page;
+                    this.getFeaturedMedia(dispatch, featured_media);
+                    return dispatch({
                         type: actions.GOT_PAGE,
                         success: true,
-                        data: page
+                        data: {page: page, slug: slug, pageFound: true}
                     });
                 }
             )
             .catch((error) => dispatch({
                 type: actions.GOT_PAGE,
                 error: error.message,
-                data: null
+                data: {page: null, slug: slug, pageFound: false}
             }));
     },
     getFeaturedMedia(dispatch, id) {
