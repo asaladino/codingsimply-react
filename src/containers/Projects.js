@@ -38,8 +38,9 @@ class Projects extends Component {
     }
 
     resizeIcon = () => {
-        if (this.iconItemsRef.current) {
-            const {childNodes} = this.iconItemsRef.current;
+        if (this.iconItemsRef && this.iconItemsRef.current) {
+            const {current} = this.iconItemsRef;
+            const {childNodes} = current;
             let max = 0;
             childNodes.forEach($el => {
                 const height = $el.childNodes[0].offsetHeight;
