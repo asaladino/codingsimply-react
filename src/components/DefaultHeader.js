@@ -38,8 +38,11 @@ class DefaultHeader extends Component {
                     <div className="top-bar-left">
                         <ul className="menu expanded">
                             <li className={`hide-for-large`}>
-                                <button id='hamburger' data-toggle="offCanvas" onClick={this.onToggleMenu}
+                                <button id='hamburger'
+                                        data-toggle="offCanvas"
+                                        onClick={this.onToggleMenu}
                                         className={`button ${this.state.openMenu ? '' : 'hollow'}`}>
+                                    <span className="show-for-sr">Menu</span>
                                     <FontAwesomeIcon icon="bars"/>
                                 </button>
                             </li>
