@@ -25,3 +25,4 @@ yarn-error.log*
 src/assets/css/app.css
 app.css.map
 flow-typed/
+public/css/app.css

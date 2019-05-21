@@ -31,8 +31,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "sass:watch": "node-sass -w src/assets/scss -o src/assets/css",
-    "sass:build": "node-sass src/assets/scss -o src/assets/css --source-map true",
+    "sass:watch": "node-sass -w src/assets/scss  -o public/css",
+    "sass:build": "node-sass src/assets/scss -o public/css --source-map true",
     "test": "jest",
     "eject": "react-scripts eject"
   },
