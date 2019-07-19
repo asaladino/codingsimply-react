@@ -8,6 +8,10 @@ import Loading from "../components/Loading";
 
 class Search extends Component {
 
+    componentDidMount() {
+        window.document.title = 'Search';
+    }
+
     searchForTerm = () => {
         const {dispatch, search} = this.props;
         searchAction.get(dispatch, search.term);

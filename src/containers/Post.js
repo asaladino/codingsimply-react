@@ -37,6 +37,7 @@ class Post extends Component {
         let content = <div className='text-center'><Loading/></div>;
         if (posts.hasPostLoaded()) {
             const {post} = posts;
+            window.document.title = 'Blog | ' + post.getTitle();
             content = (
                 <div className='animated fadeIn' key={post.getId()}>
                     <h2><FractureTitle split={'word'}>{post.getTitle()}</FractureTitle></h2>

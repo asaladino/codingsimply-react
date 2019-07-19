@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 class Posts extends Component {
     componentDidMount() {
         const {posts, dispatch} = this.props;
+        window.document.title = 'Blog';
         if (!posts.hasLoaded()) {
             postsAction.getPosts(dispatch);
         }

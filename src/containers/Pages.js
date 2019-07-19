@@ -39,6 +39,7 @@ class Pages extends Component {
         let content = <div className='text-center'><Loading/></div>;
         if (pages.hasLoaded()) {
             const page = pages.getPage();
+            window.document.title = page.getTitle();
             content = (
                 <div className='animated fadeIn' key={page.getId()}>
                     <h2>

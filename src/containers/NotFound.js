@@ -4,6 +4,7 @@ import FractureTitle from "../components/FractureTitle";
 export default class NotFound extends React.Component {
 
     render() {
+        window.document.title = 'Page Not Found';
         return (
             <div className="row">
                 <div className="large-8 large-push-2 columns">
