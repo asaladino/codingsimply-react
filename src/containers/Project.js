@@ -54,6 +54,7 @@ class Project extends Component {
             );
         }
 
+        window.document.title = 'Project | ' + project.getTitle();
         return (
             <div className="row">
                 <div className="large-8 large-push-2 columns">

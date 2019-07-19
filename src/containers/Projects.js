@@ -19,6 +19,7 @@ class Projects extends Component {
 
     componentDidMount() {
         const {projects, dispatch} = this.props;
+        window.document.title = 'Portfolio';
         if (!projects.hasLoaded()) {
             projectsAction.getProjects(dispatch);
         }

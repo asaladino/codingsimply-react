@@ -11,6 +11,7 @@ class Home extends Component {
 
     componentDidMount() {
         const {posts, dispatch, projects} = this.props;
+        window.document.title = 'Coding Simply';
         if (!posts.hasLoaded()) {
             postsAction.getPosts(dispatch);
         }
