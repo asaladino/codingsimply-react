@@ -21,6 +21,9 @@ export default class MenuItemModel {
         if (this.getTitle().toLowerCase() === 'portfolio') {
             return 'bookmark';
         }
+        if (this.getTitle().toLowerCase() === 'books') {
+            return 'book';
+        }
         return this.getTitle().toLowerCase();
     }
 
