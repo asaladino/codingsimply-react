@@ -24,6 +24,12 @@ const posts = {
     GOT_POST: 'GOT_POST'
 };
 
+const books = {
+    GET_BOOKS: 'GET_BOOKS',
+    GOT_BOOKS: 'GOT_BOOKS',
+    SET_BOOK_DISPLAY: 'SET_BOOK_DISPLAY'
+};
+
 const projects = {
     GET_PROJECTS: 'GET_PROJECTS',
     GOT_PROJECTS: 'GOT_PROJECTS',
@@ -43,6 +49,7 @@ export {
     pages,
     posts,
     projects,
+    books,
     menu,
     search
 };
