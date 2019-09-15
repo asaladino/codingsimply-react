@@ -11,6 +11,7 @@ import {
     faBlog,
     faHome,
     faBookmark,
+    faBook,
     faBars,
     faSpinner,
     faFilter,
@@ -39,7 +40,7 @@ class App extends Component {
         super(props);
         library.add(
             faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner,
-            faGithub, faFilter, faThLarge, faList, faCaretLeft, faCaretRight
+            faGithub, faFilter, faThLarge, faList, faCaretLeft, faCaretRight, faBook
         );
     }
 
