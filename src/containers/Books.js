@@ -22,25 +22,21 @@ const Books = (props) => {
         <div className="large-8 large-push-2 columns">
             <main className="site-main home">
                 <div className="row">
-                    <div className="large-12 columns">
-                        <h1>
-                            <FractureTitle split={'word'}>
-                                Books
-                            </FractureTitle>
-                        </h1>
-                    </div>
-                </div>
-                <div className="row">
                     {books.length > 0 ? books.map((book, index) => {
-                        return<div key={index} className={`animated zoomIn`} style={{animationDelay: _.random(200, 600) + 'ms'}}>
+                        return <div key={index} className={`animated zoomIn`} style={{ animationDelay: _.random(200, 600) + 'ms' }}>
                             <div className="large-3 medium-3 small-6 columns">
                                 <div className="callout text-center no-border project-item">
-                                    <img alt={book.title} src={main.apiBaseUrl + '/' + book.cover}/>
+                                    <img alt={book.title} src={main.apiBaseUrl + '/' + book.cover} />
                                     <strong>{book.title}</strong>
                                 </div>
                             </div>
                         </div>
-                    }) : <div className='text-center'><Loading /></div>}
+                    }) : <div className='text-center'>
+                            <div>
+                                <strong>loading for django api, one moment</strong>
+                            </div>
+                            <Loading />
+                        </div>}
                 </div>
             </main>
         </div>

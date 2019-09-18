@@ -18,7 +18,7 @@ import {
     faThLarge,
     faList, faCaretLeft, faCaretRight
 } from '@fortawesome/free-solid-svg-icons';
-import {faGithub} from '@fortawesome/free-brands-svg-icons';
+import {faGithub, faStackOverflow} from '@fortawesome/free-brands-svg-icons';
 
 import Home from "./containers/Home";
 import Post from "./containers/Post";
@@ -40,7 +40,8 @@ class App extends Component {
         super(props);
         library.add(
             faUserAlt, faSearch, faBlog, faHome, faBookmark, faBars, faSpinner,
-            faGithub, faFilter, faThLarge, faList, faCaretLeft, faCaretRight, faBook
+            faGithub, faFilter, faThLarge, faList, faCaretLeft, faCaretRight, faBook,
+            faStackOverflow
         );
     }
 
