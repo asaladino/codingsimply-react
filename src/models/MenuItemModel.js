@@ -24,11 +24,15 @@ export default class MenuItemModel {
         if (this.getTitle().toLowerCase() === 'books') {
             return 'book';
         }
+        if (this.getTitle().toLowerCase() === 'stack overflow') {
+            return 'stack-overflow';
+        }
         return this.getTitle().toLowerCase();
     }
 
     getIconPrefix() {
-        if (this.getTitle().toLowerCase() === 'github') {
+        if (this.getTitle().toLowerCase() === 'github'||
+            this.getTitle().toLowerCase() === 'stack overflow') {
             return 'fab';
         }
         return 'fas';
