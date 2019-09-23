@@ -2,9 +2,8 @@ import MenuItemModel from "./MenuItemModel";
 
 export default class MenuModel {
 
-    items: [] = null;
-
     constructor(state) {
+        this.items = null;
         Object.assign(this, state);
     }
 
