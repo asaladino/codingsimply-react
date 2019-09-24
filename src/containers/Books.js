@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import FractureTitle from "../components/FractureTitle";
 import { books as actions } from '../actions/books';
 import Loading from "../components/Loading";
 import { main } from "../constants/main";

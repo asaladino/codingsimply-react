@@ -1,46 +1,37 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 
 interface Props {
     initials: string;
 }
 
-class ProjectIcon extends Component<Props, {}> {
-    iconRef: React.RefObject<HTMLDivElement>;
-    iconInitialsRef: React.RefObject<HTMLDivElement>;
-    iconOwnerRef: React.RefObject<HTMLDivElement>;
+const ProjectIcon = (props: Props) => {
+    const { initials } = props;
 
-    constructor(props: Props) {
-        super(props);
-        this.iconRef = React.createRef();
-        this.iconInitialsRef = React.createRef();
-        this.iconOwnerRef = React.createRef();
-    }
+    const iconRef: React.RefObject<HTMLDivElement> = React.createRef();
+    const iconInitialsRef: React.RefObject<HTMLDivElement> = React.createRef();
+    const iconOwnerRef: React.RefObject<HTMLDivElement> = React.createRef();
 
-    componentDidMount(): void {
-        this.resizeIcon();
-        window.addEventListener('resize', this.resizeIcon);
-    }
+    useEffect(() => {
+        const resizeIcon = () => {
+            if (iconRef.current) {
+                iconRef.current.style.height = iconRef.current.offsetWidth + 'px';
+                iconInitialsRef.current.style.fontSize = iconRef.current.offsetWidth * 0.46 + 'px';
+                iconOwnerRef.current.style.fontSize = iconRef.current.offsetWidth * 0.17 + 'px';
+            }
+        };
+        resizeIcon();
+        window.addEventListener('resize', resizeIcon);
 
-    resizeIcon = () => {
-        if (this.iconRef.current) {
-            this.iconRef.current.style.height = this.iconRef.current.offsetWidth + 'px';
-            this.iconInitialsRef.current.style.fontSize = this.iconRef.current.offsetWidth * 0.46 + 'px';
-            this.iconOwnerRef.current.style.fontSize = this.iconRef.current.offsetWidth * 0.17 + 'px';
-        }
-    };
+    }, [iconRef, iconInitialsRef, iconOwnerRef]);
+    
+    return <div ref={iconRef} className="project-icon shadow">
+        <div ref={iconInitialsRef} className="project-initials">
+            {initials}
+        </div>
+        <div ref={iconOwnerRef} className="project-owner">
+            cs;
+        </div>
+    </div>;
+};
 
-    render() {
-        const { initials } = this.props;
-        return (
-            <div ref={this.iconRef} className="project-icon shadow">
-                <div ref={this.iconInitialsRef} className="project-initials">
-                    {initials}
-                </div>
-                <div ref={this.iconOwnerRef} className="project-owner">
-                    cs;
-                </div>
-            </div>
-        );
-    }
-}
 export default ProjectIcon;
