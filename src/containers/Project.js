@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {projects as projectsAction} from '../actions/projects';
-import ProjectIcon from "../components/ProjectIcon";
+import ProjectIcon from "../components/ProjectIcon.tsx";
 import Slider from "react-slick/lib";
 import Loading from "../components/Loading";
 import Highlight from "react-highlight";

@@ -3,7 +3,7 @@ class PostModel {
     title = {rendered: ''};
     date = '';
     excerpt = {rendered: ''};
-    content = '';
+    content = {rendered: ''};
     slug = '';
 
     constructor(state = {}) {

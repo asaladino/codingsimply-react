@@ -30,7 +30,7 @@ class Projects extends Component {
         }
     }
 
-    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+    componentDidUpdate(prevProps) {
         const {projects} = this.props;
         const {display} = projects;
         if (display.listView) {
