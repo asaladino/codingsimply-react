@@ -31,7 +31,7 @@ const ProjectIcon = (props: Props) => {
         <div ref={iconOwnerRef} className="project-owner">
             cs;
         </div>
-    </div>;
-};
+    </div>
+}
 
 export default ProjectIcon;
