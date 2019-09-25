@@ -3,6 +3,7 @@ import {Route, Switch} from 'react-router';
 import routes from "./constants/routes";
 import {BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import Analytics from 'react-router-ga';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
@@ -31,7 +32,6 @@ import Search from "./containers/Search";
 import {site as siteAction} from "./actions/site";
 import {menus as menuAction} from "./actions/menu";
 import DefaultLayout from "./components/DefaultLayout";
-import Analytics from 'react-router-ga';
 import {main} from "./constants/main";
 import NotFound from "./containers/NotFound";
 

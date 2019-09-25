@@ -1,19 +1,14 @@
-import {main} from "../constants/main";
-
+import { main } from '../constants/main';
 export default class MenuItemModel {
-
     ID = 0;
     title = '';
     url = '';
-
     constructor(state) {
         Object.assign(this, state);
     }
-
     getTitle() {
         return this.title;
     }
-
     getIcon() {
         if (this.getTitle().toLowerCase() === 'profile') {
             return 'user-alt';
@@ -29,46 +24,41 @@ export default class MenuItemModel {
         }
         return this.getTitle().toLowerCase();
     }
-
     getIconPrefix() {
-        if (this.getTitle().toLowerCase() === 'github'||
-            this.getTitle().toLowerCase() === 'stack overflow') {
+        if (
+            this.getTitle().toLowerCase() === 'github' ||
+            this.getTitle().toLowerCase() === 'stack overflow'
+        ) {
             return 'fab';
         }
         return 'fas';
     }
-
     getId() {
         return this.ID;
     }
-
     isInternalLink() {
-        for(let alias of main.aliases) {
-            if(this.url.indexOf(alias) > 0) {
+        for (let alias of main.aliases) {
+            if (this.url.indexOf(alias) > 0) {
                 return true;
             }
         }
         return false;
     }
-
     getUrl() {
         return this.url;
     }
-
     getInternalUrl() {
         let url = this.url.replace('https://', '').replace('http://', '');
-        for(let alias of main.aliases) {
+        for (let alias of main.aliases) {
             url = url.replace(alias, '');
         }
         return url;
     }
-
     isCurrentItem() {
         return this.isInternalLink() && this.getInternalUrl() === window.location.pathname;
     }
-
     isActive() {
-        if(this.isCurrentItem()) {
+        if (this.isCurrentItem()) {
             return 'is-active';
         }
     }
