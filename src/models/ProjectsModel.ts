@@ -52,11 +52,5 @@ export default class ProjectsModel {
     getCategories() {
         return _.uniqBy(_.flatMap(this.projects, p => p.categories), 'term_id')
             .filter(c => this.display.moreCategories || _.indexOf(this.display.selected, c.name) > -1)
-            .sort(c => {
-                const index = _.indexOf(this.display.selected, c.name);
-                if (index < 0) { return -1; }
-                if (index > 0) { return 1; }
-                return 0;
-            });
     }
 }
