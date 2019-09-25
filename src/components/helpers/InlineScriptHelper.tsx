@@ -13,29 +13,29 @@ const loadInlineScripts = () => {
 };
 
 const contentImageLoading = () => {
-    document.querySelectorAll('#root img').forEach(img => {
+    document.querySelectorAll('#root img').forEach((img: HTMLImageElement) => {
         if (!img.hasAttribute('data-src')) {
             img.setAttribute('data-src', img.getAttribute('src'));
-            img.style = 'display: none;';
+            img.setAttribute('style', 'display: none;');
             img.onload = (e) => {
-                e.currentTarget.style = 'display: block;';
-                e.currentTarget.className += ' animated zoomIn';
+                img.setAttribute('style', 'display: block;');
+                img.className += ' animated zoomIn';
             };
         }
     });
 };
 
 const ImageLoadingAnimated = (props) => {
-    const {children} = props;
-    const nodes = !Array.isArray(children) ? [children] : children;
-    return nodes.filter($el => $el.type === 'img').map(($img, key) => {
-        return (<span style={{display: 'none'}} key={key}>
+    const { children } = props;
+    const nodes: any = !Array.isArray(children) ? [children] : children;
+    return nodes.filter(($el: any) => $el.type === 'img').map(($img: any, key: number) => {
+        return <span style={{ display: 'none' }} key={key}>
             <img alt={$img.props.alt} {...$img.props} onLoad={(e) => {
-                const {parentNode} = e.currentTarget;
-                parentNode.style = 'display: block;';
-                parentNode.className += ' animated zoomIn';
-            }}/>
-        </span>);
+                let { parentElement } = e.currentTarget;
+                parentElement.setAttribute('style', 'display: block;');
+                parentElement.className += ' animated zoomIn';
+            }} />
+        </span>
     });
 };
 

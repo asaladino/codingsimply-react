@@ -1,21 +1,19 @@
 import React from "react";
+import CategoryModel from "../models/CategoryModel";
 
 interface Props {
-    categories: Category[];
-}
-
-interface Category {
-    term_id: number;
-    name: string;
+    categories: CategoryModel[];
 }
 
 const Categories = (props: Props) => {
     const { categories } = props;
-    return categories.map(c => (
-        <span key={c.term_id} className="label secondary">
-            {c.name}
-        </span>
-    ));
+    return <React.Fragment>
+        {categories.map(c => (
+            <span key={c.term_id} className="label secondary">
+                {c.name}
+            </span>
+        ))}
+    </React.Fragment>;
 };
 
 export default Categories;

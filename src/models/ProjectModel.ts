@@ -1,4 +1,5 @@
 import _ from "lodash";
+import CategoryModel from "./CategoryModel";
 
 export default class ProjectModel {
 
@@ -9,7 +10,7 @@ export default class ProjectModel {
     post_content = '';
     promote = false;
     randomKey = 0;
-    categories = [];
+    categories: CategoryModel[] = [];
 
     meta = {
         icon_url: null,
