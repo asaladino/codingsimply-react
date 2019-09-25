@@ -21,16 +21,16 @@ export default class ProjectsModel {
     }
 
     getProjects() {
-        const {selected} = this.display;
+        const { selected } = this.display;
         const term = this.display.term.toLowerCase();
         if (this.display.filter) {
             return _.sortBy(this.projects.filter(p => {
                 return (
-                        term === '' ||
-                        p.getTitle().toLowerCase().indexOf(term) > 0 ||
-                        p.getExcept().toLowerCase().indexOf(term) > 0 ||
-                        p.getContent().toLowerCase().indexOf(term) > 0
-                    )
+                    term === '' ||
+                    p.getTitle().toLowerCase().indexOf(term) > 0 ||
+                    p.getExcept().toLowerCase().indexOf(term) > 0 ||
+                    p.getContent().toLowerCase().indexOf(term) > 0
+                )
                     &&
                     (
                         selected.length === 0 ||
@@ -52,6 +52,11 @@ export default class ProjectsModel {
     getCategories() {
         return _.uniqBy(_.flatMap(this.projects, p => p.categories), 'term_id')
             .filter(c => this.display.moreCategories || _.indexOf(this.display.selected, c.name) > -1)
-            .sort(c => _.indexOf(this.display.selected, c.name) === -1);
+            .sort(c => {
+                const index = _.indexOf(this.display.selected, c.name);
+                if (index < 0) { return -1; }
+                if (index > 0) { return 1; }
+                return 0;
+            });
     }
 }

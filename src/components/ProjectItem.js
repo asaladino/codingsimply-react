@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import ProjectIcon from "./ProjectIcon.tsx";
+import ProjectIcon from "./ProjectIcon";
 import _ from "lodash";
 
 export default class ProjectItem extends Component {

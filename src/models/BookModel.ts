@@ -1,7 +1,4 @@
-
-class BookModel {
+export default class BookModel {
     title: string;
     cover: string;
 }
-
-export default BookModel;
