@@ -14,7 +14,7 @@ const ProjectIcon = (props: Props) => {
     useEffect(() => {
         const resizeIcon = () => {
             if (iconRef.current) {
-                iconRef.current.style.height = iconRef.current.offsetWidth + 'px';
+                iconRef.current.style.height = (iconRef.current.offsetWidth) + 'px';
                 iconInitialsRef.current.style.fontSize = iconRef.current.offsetWidth * 0.46 + 'px';
                 iconOwnerRef.current.style.fontSize = iconRef.current.offsetWidth * 0.17 + 'px';
             }
