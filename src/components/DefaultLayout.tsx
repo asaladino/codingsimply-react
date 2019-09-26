@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import DefaultHeader from "./DefaultHeader";
 import SiteModel from "../models/SiteModel";
 import MenuModel from "../models/MenuModel";
@@ -6,7 +6,7 @@ import MenuModel from "../models/MenuModel";
 interface Props {
     site: SiteModel;
     menus: MenuModel;
-    children: Component;
+    children: any;
 }
 
 const DefaultLayout = (props: Props) => {
