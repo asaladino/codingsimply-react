@@ -37,28 +37,33 @@ import NotFound from "./containers/NotFound";
 import SiteModel from "./models/SiteModel";
 import MenuModel from "./models/MenuModel";
 
-const App = (props) => {
+
+interface Props {
+    site: SiteModel;
+    menus: MenuModel;
+    dispatch: any;
+}
+
+const App = (props: Props) => {
     const { site, menus, dispatch } = props;
 
-    useEffect(() => {
-        library.add(
-            faUserAlt,
-            faSearch,
-            faBlog,
-            faHome,
-            faBookmark,
-            faBars,
-            faSpinner,
-            faGithub,
-            faFilter,
-            faThLarge,
-            faList,
-            faCaretLeft,
-            faCaretRight,
-            faBook,
-            faStackOverflow
-        );
-    });
+    library.add(
+        faUserAlt,
+        faSearch,
+        faBlog,
+        faHome,
+        faBookmark,
+        faBars,
+        faSpinner,
+        faGithub,
+        faFilter,
+        faThLarge,
+        faList,
+        faCaretLeft,
+        faCaretRight,
+        faBook,
+        faStackOverflow
+    );
 
     useEffect(() => {
         if (!site.hasLoaded()) {
@@ -67,7 +72,7 @@ const App = (props) => {
         if (!menus.hasLoaded()) {
             menuAction.getMenu(dispatch, "primary");
         }
-    });
+    }, [site, menus, dispatch]);
 
     return <BrowserRouter>
         <Analytics id={main.isDev() ? `UA-111111111-1` : `UA-22975683-1`}>
@@ -101,7 +106,7 @@ const App = (props) => {
         </Analytics>
     </BrowserRouter>
 }
-export default connect(state => {
+export default connect((state: Props) => {
     return {
         site: state.site,
         menus: state.menus
