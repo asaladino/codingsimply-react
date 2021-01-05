@@ -15,7 +15,7 @@
     "@types/react-redux": "^6.0.0",
     "@types/react-router-dom": "^4.3.5",
     "@types/redux-logger": "^3.0.7",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "foundation-sites": "^6.5.3",
     "highlight.js": "^9.15.6",
     "jquery": "^3.3.1",
